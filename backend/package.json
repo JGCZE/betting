@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon src/server.js"
+    "dev": "nodemon --watch src --exec ts-node src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
   },
-  "type": "module",
   "author": "Jan Gross",
   "license": "ISC",
   "dependencies": {

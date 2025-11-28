@@ -1,6 +1,5 @@
 import express from 'express';
 import cors from 'cors';
-// import mockedData from '../mocked/mockedData.ts';
 
 const app = express();
 
