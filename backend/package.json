@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon backend/src/server.ts"
+    "server": "nodemon src/server.js"
   },
   "type": "module",
   "author": "Jan Gross",
