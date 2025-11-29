@@ -1,9 +1,9 @@
 import express from 'express';
 import cors from 'cors';
+import betRoutes from './routes/bet.routes';
 
 const app = express();
 
-app.use(express.json());
 const allowedOrigin = process.env.CLIENT_ORIGIN || 'http://localhost:5173';
 
 app.use(cors({ origin: allowedOrigin }));
@@ -17,6 +17,8 @@ const mockedData = [
 app.get('/', (req, res) => {
   res.send(mockedData);
 });
+
+app.use('/api/newBets', betRoutes)
 
 const PORT = process.env.PORT || 5001;
 

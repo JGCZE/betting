@@ -3,9 +3,9 @@
     "rootDir": "./src",
     "outDir": "./dist",
 
-    "module": "nodenext",
+    "module": "commonjs",
     "target": "es2020",
-    "moduleResolution": "nodenext",
+    "moduleResolution": "node",
 
     "esModuleInterop": true,
     "skipLibCheck": true,
