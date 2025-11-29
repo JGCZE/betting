@@ -6,12 +6,12 @@ const Navbar = () => {
       <Link to="/" className="navLink">
         Home
       </Link>
-      
+
       <Link to="/createBet" className="navLink">
         Vsadit se
       </Link>
 
-      <Link to="/about" className="navLink">
+      <Link to="/overview" className="navLink">
         Přehled všech sázek
       </Link>
 

@@ -9,11 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as OverviewRouteImport } from './routes/overview'
 import { Route as CreateBetRouteImport } from './routes/createBet'
 import { Route as BadgesRouteImport } from './routes/badges'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const OverviewRoute = OverviewRouteImport.update({
+  id: '/overview',
+  path: '/overview',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CreateBetRoute = CreateBetRouteImport.update({
   id: '/createBet',
   path: '/createBet',
@@ -24,11 +29,6 @@ const BadgesRoute = BadgesRouteImport.update({
   path: '/badges',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -37,40 +37,47 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/badges': typeof BadgesRoute
   '/createBet': typeof CreateBetRoute
+  '/overview': typeof OverviewRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/badges': typeof BadgesRoute
   '/createBet': typeof CreateBetRoute
+  '/overview': typeof OverviewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/badges': typeof BadgesRoute
   '/createBet': typeof CreateBetRoute
+  '/overview': typeof OverviewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/badges' | '/createBet'
+  fullPaths: '/' | '/badges' | '/createBet' | '/overview'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/badges' | '/createBet'
-  id: '__root__' | '/' | '/about' | '/badges' | '/createBet'
+  to: '/' | '/badges' | '/createBet' | '/overview'
+  id: '__root__' | '/' | '/badges' | '/createBet' | '/overview'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
   BadgesRoute: typeof BadgesRoute
   CreateBetRoute: typeof CreateBetRoute
+  OverviewRoute: typeof OverviewRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/overview': {
+      id: '/overview'
+      path: '/overview'
+      fullPath: '/overview'
+      preLoaderRoute: typeof OverviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/createBet': {
       id: '/createBet'
       path: '/createBet'
@@ -85,13 +92,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BadgesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -104,9 +104,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
   BadgesRoute: BadgesRoute,
   CreateBetRoute: CreateBetRoute,
+  OverviewRoute: OverviewRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
