@@ -1,7 +1,7 @@
-import { Input } from "../../components/ui/input"
 import { FormProvider, useForm } from "react-hook-form"
 import { Challanger, Rival, Stack, Visibility } from "./components"
 import useMakeBetApi from "./useMakeBetApi/useMakeBetApi"
+import { Button } from "../../components/ui/button"
 
 export type TBetFormData = {
   challanger_name: string,
@@ -33,7 +33,9 @@ const MakeBet = () => {
 
         <Visibility />
 
-        <Input type="submit" className="w-1/2 mt-4 border-2" />
+        <Button type="submit" className="w-1/2 cursor-pointer border-2">
+          Odelsat
+        </Button>
       </form>
     </FormProvider>
   )

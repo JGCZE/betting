@@ -11,7 +11,7 @@ const Visibility = () => {
       defaultValue="public"
       render={({ field }) => (
         <Select onValueChange={field.onChange} defaultValue={field.value}>
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-[180px] cursor-pointer">
             <SelectValue placeholder="Private or public" />
           </SelectTrigger>
           <SelectContent>

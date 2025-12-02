@@ -15,7 +15,7 @@ const Rival = () => {
       />
 
       {rival_name?.type === "required" && (
-        <p role="alert" className="text-sm text-red-500">First name is required</p>
+        <p role="alert" className="text-sm text-red-500">first name is required</p>
       )}
 
       <Input
