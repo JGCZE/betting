@@ -1,0 +1,9 @@
+{
+  "name": "betting-monorepo",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend",
+    "shared"
+  ]
+}

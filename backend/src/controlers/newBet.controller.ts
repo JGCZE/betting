@@ -1,10 +1,11 @@
 import type { Request, Response } from 'express';
 import BetModel from '../models/newBetModel';
+import { createBetSchema } from '@betting/shared';
 
 export const createNewBet = async (req: Request, res: Response) => {
-  const payload = req.body;
+  const validBet = createBetSchema.parse(req.body);
 
-  const { challanger_name, challanger_email, rival_name, stack, deadline, visibility, betTitle } = payload;
+  const { challanger_name, challanger_email, rival_name, stack, deadline, visibility, betTitle } = validBet;
 
   if (!challanger_name || !challanger_email || !rival_name || !stack || !deadline || !visibility) {
     return res
@@ -13,11 +14,11 @@ export const createNewBet = async (req: Request, res: Response) => {
   }
 
   const betUrl =
-    betTitle.toLowerCase().replace(/\s+/g, '-') ??
+    betTitle?.toLowerCase().replace(/\s+/g, '-') ??
     Math.random().toString(36).substring(2, 10);
 
-    try {
-    const newBet = new BetModel({...payload, betUrl });
+  try {
+    const newBet = new BetModel({ ...validBet, betUrl });
 
     await newBet.save();
     res.status(201).json({ success: true, data: newBet });

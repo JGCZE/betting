@@ -2,6 +2,7 @@ import { FormProvider, useForm } from "react-hook-form"
 import { CalendarComponent, Challanger, Rival, Stack, Visibility } from "./components"
 import useMakeBetApi from "./useMakeBetApi/useMakeBetApi"
 import { Button } from "../../components/ui/button"
+import type { CreateBetDTO } from "../../lib/schemas/bet.schema"
 
 export type TBetFormData = {
   challanger_name: string,
@@ -15,10 +16,11 @@ export type TBetFormData = {
 }
 
 const MakeBet = () => {
-  const methods = useForm<TBetFormData>()
+  const methods = useForm<CreateBetDTO>()
+
   const { mutation } = useMakeBetApi()
 
-  const onSubmit = (data: TBetFormData) => {
+  const onSubmit = (data: CreateBetDTO) => {
     console.log("ON SUBMIT", data)
     mutation.mutate(data)
   }
