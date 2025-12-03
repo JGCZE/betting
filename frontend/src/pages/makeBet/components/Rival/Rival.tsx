@@ -1,5 +1,5 @@
 import { useFormContext } from "react-hook-form"
-import { Input } from "../../../../components/ui/input"
+import Input from "../../../../components/ui/input"
 
 const Rival = () => {
   const { register, formState: { errors } } = useFormContext()
@@ -11,7 +11,7 @@ const Rival = () => {
       <Input
         {...register("rival_name", { required: true, minLength: 3 })}
         aria-invalid={rival_name ? "true" : "false"}
-        placeholder="challanger name *"
+        placeholder="rival name *"
       />
 
       {rival_name?.type === "required" && (

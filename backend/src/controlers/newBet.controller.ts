@@ -1,18 +1,28 @@
 import type { Request, Response } from 'express';
+import BetModel from '../models/newBetModel';
 
 export const createNewBet = async (req: Request, res: Response) => {
-  const response = req.body;
-  console.log('BE: >>>>>>>', response);
+  const payload = req.body;
 
-  const { challanger_name, challanger_email, rival_name, stack, deadLine, visibility } = response;
+  const { challanger_name, challanger_email, rival_name, stack, deadline, visibility, betTitle } = payload;
 
-  if(!challanger_name || !challanger_email || !rival_name || !stack || !deadLine || !visibility) {
-    return res.status(400).json({ message: 'Missing required fields' });
+  if (!challanger_name || !challanger_email || !rival_name || !stack || !deadline || !visibility) {
+    return res
+      .status(400)
+      .json({ success: false, message: 'Missing required fields' });
   }
 
-  //const newBet = new BetModel({response});
+  const betUrl =
+    betTitle.toLowerCase().replace(/\s+/g, '-') ??
+    Math.random().toString(36).substring(2, 10);
 
+    try {
+    const newBet = new BetModel({...payload, betUrl });
 
-
-  res.status(201).json({ message: 'Bet created', data: req.body });
+    await newBet.save();
+    res.status(201).json({ success: true, data: newBet });
+  } catch (error) {
+    console.error("Error in Create new bet : ", error);
+    res.status(500).json({ success: false, message: "Server Error " });
+  }
 };

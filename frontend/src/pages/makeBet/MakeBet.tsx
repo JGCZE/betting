@@ -1,5 +1,5 @@
 import { FormProvider, useForm } from "react-hook-form"
-import { Challanger, Rival, Stack, Visibility } from "./components"
+import { CalendarComponent, Challanger, Rival, Stack, Visibility } from "./components"
 import useMakeBetApi from "./useMakeBetApi/useMakeBetApi"
 import { Button } from "../../components/ui/button"
 
@@ -8,8 +8,9 @@ export type TBetFormData = {
   challanger_email: string,
   rival_name: string,
   rival_email?: string,
+  betTitle?: string,
   stack: string,
-  deadline?: string,
+  deadline: string,
   visibility: "public" | "private",
 }
 
@@ -30,13 +31,18 @@ const MakeBet = () => {
         <Rival />
 
         <Stack />
+        
+        <div className="flex gap-4">
+          <CalendarComponent />
 
-        <Visibility />
+          <Visibility />
+        </div>
 
         <Button type="submit" className="w-1/2 cursor-pointer border-2">
           Odelsat
         </Button>
       </form>
+      <span className="text-red-400 text-sm">* jsou povinná pole</span>
     </FormProvider>
   )
 }

@@ -1,6 +1,10 @@
 import express from 'express';
 import cors from 'cors';
 import betRoutes from './routes/bet.routes';
+import { connectToDB } from './config/db';
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 
@@ -13,8 +17,12 @@ app.use('/', betRoutes)
 
 const PORT = process.env.PORT || 5001;
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+connectToDB().then(() => {
+  console.log("Database connected. Starting server... ");
+  
+  app.listen(PORT, () => {
+    console.log(`Server is running on port >>>>>> ${PORT} <<<<<<`);
+  });
 });
 
 export default app;
