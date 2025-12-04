@@ -12,7 +12,6 @@
   "author": "Jan Gross",
   "license": "ISC",
   "dependencies": {
-    "@betting/shared": "*",
     "@types/cors": "^2.8.19",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",

@@ -1,9 +1,8 @@
 import type { Request, Response } from 'express';
 import BetModel from '../models/newBetModel';
-import { createBetSchema } from '@betting/shared';
 
 export const createNewBet = async (req: Request, res: Response) => {
-  const validBet = createBetSchema.parse(req.body);
+  const validBet = req.body;
 
   const { challanger_name, challanger_email, rival_name, stack, deadline, visibility, betTitle } = validBet;
 
