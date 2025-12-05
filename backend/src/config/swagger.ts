@@ -54,45 +54,29 @@ export const options: Options = {
                 }
               }
             },
-            '400': {
-              description: 'Neplatný vstup'
-            }
+            '400': { description: 'Neplatný vstup' }
           }
         }
       },
-      '/api/bet/{betUrl}': {
+      '/api/bets/newest': {
         get: {
           tags: ['Bets'],
-          summary: 'Získání sázky podle jejího URL',
-          parameters: [
-            {
-              name: 'betUrl',
-              in: 'path',
-              required: true,
-              description: 'Veřejné ID sázky',
-              schema: {
-                type: 'string',
-                example: 'abc123xyz'
-              }
-            }
-          ],
+          summary: 'Získání 15 nejnovějších veřejných sázek',
           responses: {
             '200': {
-              description: 'Úspěšné získání sázky',
+              description: 'Úspěšné získání sázek',
               content: {
                 'application/json': {
                   schema: {
-                    $ref: '#/components/schemas/Bet'
+                    $ref: '#/components/schemas/NewestBetsResponse'
                   }
                 }
               }
             },
-            '404': {
-              description: 'Sázka nenalezena'
-            }
+            '404': { description: 'Sázky nenalezeny' }
           }
         }
-      },
+      }
     },
     components: {
       schemas: {
@@ -204,7 +188,37 @@ export const options: Options = {
               description: 'Datum poslední aktualizace'
             }
           }
-        }
+        },
+        NewestBetItem: {
+          type: 'object',
+          properties: {
+            createdAt: {
+              type: 'string',
+              format: 'date-time'
+            },
+            rival_name: {
+              type: 'string'
+            },
+            stack: {
+              type: 'string'
+            }
+          }
+        },
+        NewestBetsResponse: {
+          type: 'object',
+          properties: {
+            success: {
+              type: 'boolean',
+              example: true
+            },
+            data: {
+              type: 'array',
+              items: {
+                $ref: '#/components/schemas/NewestBetItem'
+              }
+            }
+          }
+        },
       }
     }
   },

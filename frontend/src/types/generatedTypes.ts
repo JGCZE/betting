@@ -51,36 +51,33 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/bet/{betUrl}": {
+    "/api/bets/newest": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** Získání sázky podle jejího URL */
+        /** Získání 15 nejnovějších veřejných sázek */
         get: {
             parameters: {
                 query?: never;
                 header?: never;
-                path: {
-                    /** @description Veřejné ID sázky */
-                    betUrl: string;
-                };
+                path?: never;
                 cookie?: never;
             };
             requestBody?: never;
             responses: {
-                /** @description Úspěšné získání sázky */
+                /** @description Úspěšné získání sázek */
                 200: {
                     headers: {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["Bet"];
+                        "application/json": components["schemas"]["NewestBetsResponse"];
                     };
                 };
-                /** @description Sázka nenalezena */
+                /** @description Sázky nenalezeny */
                 404: {
                     headers: {
                         [name: string]: unknown;
@@ -192,6 +189,17 @@ export interface components {
              * @description Datum poslední aktualizace
              */
             updatedAt?: string;
+        };
+        NewestBetItem: {
+            /** Format: date-time */
+            createdAt?: string;
+            rival_name?: string;
+            stack?: string;
+        };
+        NewestBetsResponse: {
+            /** @example true */
+            success?: boolean;
+            data?: components["schemas"]["NewestBetItem"][];
         };
     };
     responses: never;

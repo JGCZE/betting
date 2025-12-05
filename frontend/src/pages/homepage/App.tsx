@@ -1,6 +1,5 @@
-import { Suspense, type ReactElement } from "react";
+import { type ReactElement } from "react";
 import Top15NewestBets from "./components/Top15NewestBets";
-import { SkeletonLoader } from "../../components/shared/SkeletonLoader";
 
 const App = (): ReactElement => {
   return (
@@ -20,11 +19,7 @@ const App = (): ReactElement => {
         voluptatibus fugiat similique, sed nam magnam illo, omnis eos!
       </p>
     
-       <SkeletonLoader />
-
-      <Suspense fallback={<SkeletonLoader />}>
-          <Top15NewestBets />
-      </Suspense>
+      <Top15NewestBets />
     </div>
   )
 }

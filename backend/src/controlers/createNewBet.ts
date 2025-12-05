@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
 import BetModel from '../models/newBetModel';
 
-export const createNewBet = async (req: Request, res: Response) => {
+const createNewBet = async (req: Request, res: Response) => {
   const validBet = req.body;
 
   const { challanger_name, challanger_email, rival_name, stack, deadline, visibility, betTitle } = validBet;
@@ -27,6 +27,4 @@ export const createNewBet = async (req: Request, res: Response) => {
   }
 };
 
-export const getBetByUrl = async (req: Request, res: Response) => {
-  const { betUrl } = req.params;
-};
+export default createNewBet;

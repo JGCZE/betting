@@ -1,16 +1,19 @@
+import type { components } from "@/types/generatedTypes";
 import { useSuspenseQuery } from "@tanstack/react-query";
 
-const useTop15NewestBetsApi = () => {
+type TNewestBetsResponse = components["schemas"]["Bet"];
 
-  const fetchTop15NewestBets = async () => {
+const useTop15NewestBetsApi = () => {
+  const fetchTop15NewestBets = async (): Promise<TNewestBetsResponse> => {
     // just for testing, using a public API
-    const response = await fetch("https://jsonplaceholder.typicode.com/users");
+    const response = await fetch("http://localhost:5001/api/bets/newest");
 
     // await new Promise((resolve) => setTimeout(resolve, 3000));
 
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
+
     return response.json();
   };
 
