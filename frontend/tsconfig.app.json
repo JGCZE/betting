@@ -8,6 +8,11 @@
     "types": ["vite/client"],
     "skipLibCheck": true,
 
+    "paths": {
+      "@/*": ["./src/*"],
+      "@apiTypes": ["./src/types/generatedTypes"]
+    },
+
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,

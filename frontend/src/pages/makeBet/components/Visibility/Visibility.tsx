@@ -1,5 +1,5 @@
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useFormContext, Controller } from "react-hook-form"
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../../../../components/ui/select"
 
 const Visibility = () => {
   const { control } = useFormContext()

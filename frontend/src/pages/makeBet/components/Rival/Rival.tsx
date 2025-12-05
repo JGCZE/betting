@@ -1,5 +1,5 @@
+import { Input } from "@/components/ui/input"
 import { useFormContext } from "react-hook-form"
-import Input from "../../../../components/ui/input"
 
 const Rival = () => {
   const { register, formState: { errors } } = useFormContext()

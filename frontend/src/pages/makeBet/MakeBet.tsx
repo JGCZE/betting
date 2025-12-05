@@ -1,18 +1,10 @@
 import { FormProvider, useForm } from "react-hook-form"
 import { CalendarComponent, Challanger, Rival, Stack, Visibility } from "./components"
 import useMakeBetApi from "./useMakeBetApi/useMakeBetApi"
-import { Button } from "../../components/ui/button"
+import type { components } from "@/types/generatedTypes"
+import { Button } from "@/components/ui/button"
 
-export type TBetFormData = {
-  challanger_name: string,
-  challanger_email: string,
-  rival_name: string,
-  rival_email?: string,
-  betTitle?: string,
-  stack: string,
-  deadline: string,
-  visibility: "public" | "private",
-}
+export type TBetFormData = components["schemas"]["BetCreate"]
 
 const MakeBet = () => {
   const methods = useForm<TBetFormData>()

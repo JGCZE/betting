@@ -92,7 +92,7 @@ export const options: Options = {
             }
           }
         }
-      }
+      },
     },
     components: {
       schemas: {

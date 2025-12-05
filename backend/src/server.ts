@@ -22,6 +22,10 @@ app.use('/', betRoutes)
 const swaggerSpec = swaggerJsdoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+app.get('/api-docs-json', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(swaggerSpec);
+});
 
 connectToDB().then(() => {
   console.log("Database connected. Starting server... ");

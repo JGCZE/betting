@@ -1,6 +1,6 @@
 import { useFormContext } from "react-hook-form"
-import { Textarea } from "../../../../components/ui/textarea"
-import Input from "../../../../components/ui/input"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 
 const Stack = () => {
   const { register, formState: { errors } } = useFormContext()

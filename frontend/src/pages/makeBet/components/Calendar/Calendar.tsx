@@ -2,14 +2,12 @@
 
 import { parseDate } from "chrono-node"
 import { CalendarIcon } from "lucide-react"
-
-
-import { Calendar } from "../../../../components/ui/calendar"
-import { Popover, PopoverContent, PopoverTrigger } from "../../../../components/ui/popover"
 import { useFormContext } from "react-hook-form"
 import { useState } from "react"
-import Input from "../../../../components/ui/input"
-import { Button } from "../../../../components/ui/button"
+import { Button } from "@/components/ui/button"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { Input } from "@/components/ui/input"
+import { Calendar } from "@/components/ui/calendar"
 
 const formatDate = (date?: Date) => {
   if (!date) {
