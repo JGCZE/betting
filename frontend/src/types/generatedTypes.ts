@@ -13,7 +13,6 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Vytvoření nové sázky */
         post: {
             parameters: {
                 query?: never;
@@ -21,29 +20,8 @@ export interface paths {
                 path?: never;
                 cookie?: never;
             };
-            requestBody: {
-                content: {
-                    "application/json": components["schemas"]["BetCreate"];
-                };
-            };
-            responses: {
-                /** @description Sázka úspěšně vytvořena */
-                201: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content: {
-                        "application/json": components["schemas"]["Bet"];
-                    };
-                };
-                /** @description Neplatný vstup */
-                400: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-            };
+            requestBody?: never;
+            responses: never;
         };
         delete?: never;
         options?: never;
@@ -58,7 +36,6 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Získání 15 nejnovějších veřejných sázek */
         get: {
             parameters: {
                 query?: never;
@@ -67,24 +44,7 @@ export interface paths {
                 cookie?: never;
             };
             requestBody?: never;
-            responses: {
-                /** @description Úspěšné získání sázek */
-                200: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content: {
-                        "application/json": components["schemas"]["NewestBetsResponse"];
-                    };
-                };
-                /** @description Sázky nenalezeny */
-                404: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content?: never;
-                };
-            };
+            responses: never;
         };
         put?: never;
         post?: never;
@@ -98,98 +58,8 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        BetCreate: {
-            /**
-             * @description Jméno vyzývatele
-             * @example Jan Novák
-             */
-            challanger_name: string;
-            /**
-             * Format: email
-             * @description Email vyzývatele
-             * @example jan@example.com
-             */
-            challanger_email: string;
-            /**
-             * @description Jméno soupeře
-             * @example Petr Svoboda
-             */
-            rival_name: string;
-            /**
-             * Format: email
-             * @description Email soupeře (volitelné)
-             * @example petr@example.com
-             */
-            rival_email?: string;
-            /**
-             * @description Název sázky
-             * @example Novoroční předsevzetí
-             */
-            betTitle?: string;
-            /**
-             * @description O co se sází
-             * @example Láhev Moët & Chandon
-             */
-            stack: string;
-            /**
-             * Format: date
-             * @description Termín splnění sázky
-             * @example 2024-12-31
-             */
-            deadline: string;
-            /**
-             * @description Viditelnost sázky
-             * @enum {string}
-             */
-            visibility: "public" | "private";
-        };
-        Bet: {
-            /**
-             * @description MongoDB ID
-             * @example 507f1f77bcf86cd799439011
-             */
-            _id?: string;
-            /** @example Jan Novák */
-            challanger_name?: string;
-            /**
-             * Format: email
-             * @example jan@example.com
-             */
-            challanger_email?: string;
-            /** @example Petr Svoboda */
-            rival_name?: string;
-            /**
-             * Format: email
-             * @example petr@example.com
-             */
-            rival_email?: string;
-            /** @example Novoroční předsevzetí */
-            betTitle?: string;
-            /**
-             * @description Unikátní URL identifikátor
-             * @example abc123xyz
-             */
-            betUrl?: string;
-            /** @example Láhev Moët & Chandon */
-            stack?: string;
-            /**
-             * Format: date
-             * @example 2024-12-31
-             */
-            deadline?: string;
-            /** @enum {string} */
-            visibility?: "public" | "private";
-            /**
-             * Format: date-time
-             * @description Datum vytvoření
-             */
-            createdAt?: string;
-            /**
-             * Format: date-time
-             * @description Datum poslední aktualizace
-             */
-            updatedAt?: string;
-        };
+        BetCreate: unknown;
+        Bet: unknown;
         NewestBetItem: {
             /** Format: date-time */
             createdAt?: string;
