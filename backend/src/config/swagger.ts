@@ -1,4 +1,6 @@
-export const options = {
+import { Options } from 'swagger-jsdoc';
+
+export const options: Options = {
   definition: {
     openapi: '3.0.0',
     info: {
@@ -10,9 +12,15 @@ export const options = {
         email: 'support@betting.cz'
       }
     },
+    tags: [
+      {
+        name: 'Bets',
+        description: 'Operace týkající se sázek'
+      }
+    ],
     servers: [
       {
-        url: 'http://localhost:5000',
+        url: 'http://localhost:5001',
         description: 'Development server'
       },
       {
@@ -20,89 +28,185 @@ export const options = {
         description: 'Production server'
       }
     ],
+    paths: {
+      '/api/bet': {
+        post: {
+          tags: ['Bets'],
+          summary: 'Vytvoření nové sázky',
+          requestBody: {
+            required: true,
+            content: {
+              'application/json': {
+                schema: {
+                  $ref: '#/components/schemas/BetCreate'
+                }
+              }
+            }
+          },
+          responses: {
+            '201': {
+              description: 'Sázka úspěšně vytvořena',
+              content: {
+                'application/json': {
+                  schema: {
+                    $ref: '#/components/schemas/Bet'
+                  }
+                }
+              }
+            },
+            '400': {
+              description: 'Neplatný vstup'
+            }
+          }
+        }
+      },
+      '/api/bet/{betUrl}': {
+        get: {
+          tags: ['Bets'],
+          summary: 'Získání sázky podle jejího URL',
+          parameters: [
+            {
+              name: 'betUrl',
+              in: 'path',
+              required: true,
+              description: 'Veřejné ID sázky',
+              schema: {
+                type: 'string',
+                example: 'abc123xyz'
+              }
+            }
+          ],
+          responses: {
+            '200': {
+              description: 'Úspěšné získání sázky',
+              content: {
+                'application/json': {
+                  schema: {
+                    $ref: '#/components/schemas/Bet'
+                  }
+                }
+              }
+            },
+            '404': {
+              description: 'Sázka nenalezena'
+            }
+          }
+        }
+      }
+    },
     components: {
       schemas: {
-        Bet: {
+        BetCreate: {
           type: 'object',
-          required: ['name_one', 'email_one', 'bet', 'stack'],
+          required: ['challanger_name', 'challanger_email', 'rival_name', 'stack', 'deadline', 'visibility'],
           properties: {
-            _id: {
-              type: 'string',
-              description: 'MongoDB ID (automatické)',
-              example: '507f1f77bcf86cd799439011'
-            },
-            slug: {
-              type: 'string',
-              description: 'Veřejné ID pro URL',
-              example: 'abc123xyz'
-            },
-            name_one: {
+            challanger_name: {
               type: 'string',
               description: 'Jméno vyzývatele',
               example: 'Jan Novák'
             },
-            email_one: {
+            challanger_email: {
               type: 'string',
               format: 'email',
               description: 'Email vyzývatele',
               example: 'jan@example.com'
             },
-            name_two: {
+            rival_name: {
               type: 'string',
               description: 'Jméno soupeře',
               example: 'Petr Svoboda'
             },
-            email_two: {
+            rival_email: {
               type: 'string',
               format: 'email',
-              description: 'Email soupeře',
+              description: 'Email soupeře (volitelné)',
               example: 'petr@example.com'
             },
-            bet: {
+            betTitle: {
               type: 'string',
-              description: 'Text sázky',
-              example: 'Do konce roku se neožeru'
+              description: 'Název sázky',
+              example: 'Novoroční předsevzetí'
             },
             stack: {
               type: 'string',
               description: 'O co se sází',
               example: 'Láhev Moët & Chandon'
             },
+            deadline: {
+              type: 'string',
+              format: 'date',
+              description: 'Termín splnění sázky',
+              example: '2024-12-31'
+            },
             visibility: {
               type: 'string',
               enum: ['public', 'private'],
-              default: 'private',
               description: 'Viditelnost sázky'
-            },
-            status: {
+            }
+          }
+        },
+        Bet: {
+          type: 'object',
+          properties: {
+            _id: {
               type: 'string',
-              enum: ['pending', 'accepted', 'rejected', 'completed'],
-              default: 'pending',
-              description: 'Stav sázky'
+              description: 'MongoDB ID',
+              example: '507f1f77bcf86cd799439011'
+            },
+            challanger_name: {
+              type: 'string',
+              example: 'Jan Novák'
+            },
+            challanger_email: {
+              type: 'string',
+              format: 'email',
+              example: 'jan@example.com'
+            },
+            rival_name: {
+              type: 'string',
+              example: 'Petr Svoboda'
+            },
+            rival_email: {
+              type: 'string',
+              format: 'email',
+              example: 'petr@example.com'
+            },
+            betTitle: {
+              type: 'string',
+              example: 'Novoroční předsevzetí'
+            },
+            betUrl: {
+              type: 'string',
+              description: 'Unikátní URL identifikátor',
+              example: 'abc123xyz'
+            },
+            stack: {
+              type: 'string',
+              example: 'Láhev Moët & Chandon'
+            },
+            deadline: {
+              type: 'string',
+              format: 'date',
+              example: '2024-12-31'
+            },
+            visibility: {
+              type: 'string',
+              enum: ['public', 'private']
             },
             createdAt: {
               type: 'string',
               format: 'date-time',
               description: 'Datum vytvoření'
-            }
-          }
-        },
-        Error: {
-          type: 'object',
-          properties: {
-            success: {
-              type: 'boolean',
-              example: false
             },
-            error: {
+            updatedAt: {
               type: 'string',
-              example: 'Chybová zpráva'
+              format: 'date-time',
+              description: 'Datum poslední aktualizace'
             }
           }
         }
       }
     }
   },
-  // Cesty k souborům s API dokumentací
-  apis: ['./routes/*.js', './server.js'], // Upravit podle struktury
+  apis: ['./src/routes/*.ts', './src/server.ts']
 };

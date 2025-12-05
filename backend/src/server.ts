@@ -10,7 +10,7 @@ import { options } from './config/swagger';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5001; // Přesunuto nahoru
+const PORT = process.env.PORT || 5001;
 
 const allowedOrigin = process.env.CLIENT_ORIGIN || 'http://localhost:5173';
 

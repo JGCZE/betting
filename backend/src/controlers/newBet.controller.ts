@@ -26,3 +26,7 @@ export const createNewBet = async (req: Request, res: Response) => {
     res.status(500).json({ success: false, message: "Server Error " });
   }
 };
+
+export const getBetByUrl = async (req: Request, res: Response) => {
+  const { betUrl } = req.params;
+};
