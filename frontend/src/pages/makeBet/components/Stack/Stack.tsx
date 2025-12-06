@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 
 const Stack = () => {
-  const { register, formState: { errors } } = useFormContext()
+  const { formState: { errors }, register } = useFormContext()
   const { stack } = errors
 
   return (
@@ -19,14 +19,14 @@ const Stack = () => {
 
       <p className="text-xs mb-4 text-gray-300">popis sázky</p>
       <Textarea
-        {...register("stack", { required: true, minLength: 3 })}
-        className="pb-14"
+        {...register("stack", { minLength: 3, required: true })}
         aria-invalid={stack ? "true" : "false"}
+        className="pb-14"
         // todo random generovaný vtipný placeholdry 
         placeholder="... o flašku Moetu, že do konce roku 2026 uběhnu marathon pod 4 hodiny v papučích *"
       />
       {stack?.type === "required" && (
-        <p role="alert" className="text-sm text-red-500">stack is required</p>
+        <p className="text-sm text-red-500" role="alert">stack is required</p>
       )}
     </div>
   )

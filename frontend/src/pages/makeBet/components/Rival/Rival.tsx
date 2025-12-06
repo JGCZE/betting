@@ -1,21 +1,21 @@
-import { Input } from "@/components/ui/input"
 import { useFormContext } from "react-hook-form"
+import { Input } from "@/components/ui/input"
 
 const Rival = () => {
-  const { register, formState: { errors } } = useFormContext()
-  const { rival_name, rival_email } = errors
+  const { formState: { errors }, register } = useFormContext()
+  const { rival_email, rival_name } = errors
 
   return (
     <div className="flex flex-col gap-4">
       <label className="text-green-400">Rival</label>
       <Input
-        {...register("rival_name", { required: true, minLength: 3 })}
+        {...register("rival_name", { minLength: 3, required: true })}
         aria-invalid={rival_name ? "true" : "false"}
         placeholder="rival name *"
       />
 
       {rival_name?.type === "required" && (
-        <p role="alert" className="text-sm text-red-500">first name is required</p>
+        <p className="text-sm text-red-500" role="alert">first name is required</p>
       )}
 
       <Input

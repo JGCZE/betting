@@ -5,61 +5,66 @@
 
 export interface paths {
     "/api/bet": {
+        delete?: never;
+        get?: never;
+        head?: never;
+        options?: never;
         parameters: {
-            query?: never;
+            cookie?: never;
             header?: never;
             path?: never;
-            cookie?: never;
+            query?: never;
         };
-        get?: never;
-        put?: never;
+        patch?: never;
         post: {
             parameters: {
-                query?: never;
+                cookie?: never;
                 header?: never;
                 path?: never;
-                cookie?: never;
+                query?: never;
             };
             requestBody?: never;
             responses: never;
         };
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
+        put?: never;
         trace?: never;
     };
     "/api/bets/newest": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
+        delete?: never;
         get: {
             parameters: {
-                query?: never;
+                cookie?: never;
                 header?: never;
                 path?: never;
-                cookie?: never;
+                query?: never;
             };
             requestBody?: never;
             responses: never;
         };
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
         head?: never;
+        options?: never;
+        parameters: {
+            cookie?: never;
+            header?: never;
+            path?: never;
+            query?: never;
+        };
         patch?: never;
+        post?: never;
+        put?: never;
         trace?: never;
     };
 }
 export type webhooks = Record<string, never>;
 export interface components {
+    headers: never;
+    parameters: never;
+    pathItems: never;
+    requestBodies: never;
+    responses: never;
     schemas: {
-        BetCreate: unknown;
         Bet: unknown;
+        BetCreate: unknown;
         NewestBetItem: {
             /** Format: date-time */
             createdAt?: string;
@@ -67,16 +72,11 @@ export interface components {
             stack?: string;
         };
         NewestBetsResponse: {
+            data?: components["schemas"]["NewestBetItem"][];
             /** @example true */
             success?: boolean;
-            data?: components["schemas"]["NewestBetItem"][];
         };
     };
-    responses: never;
-    parameters: never;
-    requestBodies: never;
-    headers: never;
-    pathItems: never;
 }
 export type $defs = Record<string, never>;
 export type operations = Record<string, never>;

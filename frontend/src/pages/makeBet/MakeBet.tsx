@@ -1,8 +1,8 @@
 import { FormProvider, useForm } from "react-hook-form"
-import { CalendarComponent, Challanger, Rival, Stack, Visibility } from "./components"
-import useMakeBetApi from "./useMakeBetApi/useMakeBetApi"
 import type { components } from "@/types/generatedTypes"
 import { Button } from "@/components/ui/button"
+import { CalendarComponent, Challanger, Rival, Stack, Visibility } from "./components"
+import useMakeBetApi from "./useMakeBetApi/useMakeBetApi"
 
 export type TBetFormData = components["schemas"]["BetCreate"]
 
@@ -31,7 +31,7 @@ const MakeBet = () => {
           <Visibility />
         </div>
 
-        <Button type="submit" className="w-1/2 cursor-pointer border-2">
+        <Button className="w-1/2 cursor-pointer border-2" type="submit">
           Odelsat
         </Button>
       </form>

@@ -1,5 +1,5 @@
-import type { components } from "@/types/generatedTypes";
 import { useSuspenseQuery } from "@tanstack/react-query";
+import type { components } from "@/types/generatedTypes";
 
 type TNewestBetsResponse = components["schemas"]["Bet"];
 
@@ -17,12 +17,12 @@ const useTop15NewestBetsApi = () => {
     return response.json();
   };
 
-  const { isPending, isError, data, error } = useSuspenseQuery({
-    queryKey: ["top15newestbets"],
+  const { data, error, isError, isPending } = useSuspenseQuery({
     queryFn: fetchTop15NewestBets,
+    queryKey: ["top15newestbets"],
   });
 
-  return { isPending, isError, data, error };
+  return { data, error, isError, isPending };
 };
 
 export default useTop15NewestBetsApi;

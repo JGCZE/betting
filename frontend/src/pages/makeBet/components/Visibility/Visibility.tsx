@@ -1,5 +1,5 @@
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useFormContext, Controller } from "react-hook-form"
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 const Visibility = () => {
   const { control } = useFormContext()
@@ -8,10 +8,10 @@ const Visibility = () => {
     <>
       <Controller
         control={control}
-        name="visibility"
         defaultValue="public"
+        name="visibility"
         render={({ field }) => (
-          <Select onValueChange={field.onChange} defaultValue={field.value}>
+          <Select defaultValue={field.value} onValueChange={field.onChange}>
             <SelectTrigger className="w-[180px] cursor-pointer">
               <SelectValue placeholder="Private or public" />
             </SelectTrigger>

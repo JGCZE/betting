@@ -5,9 +5,9 @@ const useMakeBetApi = () => {
   const mutation = useMutation({
     mutationFn: async (newBet: TBetFormData) => {
       const response = await fetch('http://localhost:5001/api/bet', {
-        method: "POST",
+        body: JSON.stringify(newBet),
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newBet)
+        method: "POST"
       })
 
       if (!response.ok) {

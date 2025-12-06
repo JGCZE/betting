@@ -6,7 +6,7 @@ const Top15NewestBets = () => {
 
   return (
     <div>Top15NewestBets
-      
+
     </div>
   )
 }
