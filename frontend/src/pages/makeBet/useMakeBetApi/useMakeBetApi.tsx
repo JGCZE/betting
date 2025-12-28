@@ -4,7 +4,7 @@ import type { TBetFormData } from "../MakeBet"
 const useMakeBetApi = () => {
   const mutation = useMutation({
     mutationFn: async (newBet: TBetFormData) => {
-      const response = await fetch('http://localhost:5001/api/bet', {
+      const response = await fetch('http://localhost:3000/api/bet', {
         body: JSON.stringify(newBet),
         headers: { 'Content-Type': 'application/json' },
         method: "POST"
