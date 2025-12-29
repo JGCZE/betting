@@ -4,7 +4,23 @@
  */
 
 export interface paths {
-    "/api/bet": {
+    "/": {
+        delete?: never;
+        get: operations["AppController_getHello"];
+        head?: never;
+        options?: never;
+        parameters: {
+            cookie?: never;
+            header?: never;
+            path?: never;
+            query?: never;
+        };
+        patch?: never;
+        post?: never;
+        put?: never;
+        trace?: never;
+    };
+    "/api/bets/createBet": {
         delete?: never;
         get?: never;
         head?: never;
@@ -16,31 +32,13 @@ export interface paths {
             query?: never;
         };
         patch?: never;
-        post: {
-            parameters: {
-                cookie?: never;
-                header?: never;
-                path?: never;
-                query?: never;
-            };
-            requestBody?: never;
-            responses: never;
-        };
+        post: operations["BetsController_createBet"];
         put?: never;
         trace?: never;
     };
     "/api/bets/newest": {
         delete?: never;
-        get: {
-            parameters: {
-                cookie?: never;
-                header?: never;
-                path?: never;
-                query?: never;
-            };
-            requestBody?: never;
-            responses: never;
-        };
+        get: operations["BetsController_getNewestBets"];
         head?: never;
         options?: never;
         parameters: {
@@ -63,20 +61,64 @@ export interface components {
     requestBodies: never;
     responses: never;
     schemas: {
-        Bet: unknown;
-        BetCreate: unknown;
-        NewestBetItem: {
-            /** Format: date-time */
-            createdAt?: string;
-            rival_name?: string;
-            stack?: string;
-        };
-        NewestBetsResponse: {
-            data?: components["schemas"]["NewestBetItem"][];
-            /** @example true */
-            success?: boolean;
-        };
+        CreateBetDto: Record<string, never>;
     };
 }
 export type $defs = Record<string, never>;
-export type operations = Record<string, never>;
+export interface operations {
+    AppController_getHello: {
+        parameters: {
+            cookie?: never;
+            header?: never;
+            path?: never;
+            query?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                content?: never;
+                headers: {
+                    [name: string]: unknown;
+                };
+            };
+        };
+    };
+    BetsController_createBet: {
+        parameters: {
+            cookie?: never;
+            header?: never;
+            path?: never;
+            query?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateBetDto"];
+            };
+        };
+        responses: {
+            201: {
+                content?: never;
+                headers: {
+                    [name: string]: unknown;
+                };
+            };
+        };
+    };
+    BetsController_getNewestBets: {
+        parameters: {
+            cookie?: never;
+            header?: never;
+            path?: never;
+            query?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                content?: never;
+                headers: {
+                    [name: string]: unknown;
+                };
+            };
+        };
+    };
+}

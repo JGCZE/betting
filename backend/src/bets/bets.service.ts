@@ -2,20 +2,31 @@ import { Injectable } from '@nestjs/common';
 import { Bet, BetDocument } from './schemas/newBetSchema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { CreateBetDto } from './dto/create-bet.dto';
+import { generateSlug } from 'src/utils/slug.utils';
+import { BetsRepository } from './repository/bets.repository';
 
 @Injectable()
 export class BetsService {
-  constructor(@InjectModel(Bet.name) private betModel: Model<BetDocument>) { }
-
-  async getAllBets() {
-    return this.betModel.find().exec();
-  }
+  constructor(
+    private readonly betsRepository: BetsRepository,
+    @InjectModel(Bet.name) private betModel: Model<BetDocument>
+  ) { }
 
   async getNewestBets() {
-    return this.betModel
-      .find()
-      .sort({ createdAt: -1 })
-      .limit(5)
-      .exec();
+    return this.betsRepository.findNewest(10)
+  }
+
+  async createBet(createBetDto: CreateBetDto) {
+    const { betTitle } = createBetDto;
+
+    const betUrl = generateSlug(betTitle);
+
+    const newBet = new this.betModel({
+      ...createBetDto,
+      betUrl,
+    });
+
+    return newBet.save()
   }
 }

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { CalendarComponent, Challanger, Rival, Stack, Visibility } from "./components"
 import useMakeBetApi from "./useMakeBetApi/useMakeBetApi"
 
-export type TBetFormData = components["schemas"]["BetCreate"]
+export type TBetFormData = components["schemas"]["CreateBetDto"]
 
 const MakeBet = () => {
   const methods = useForm<TBetFormData>()

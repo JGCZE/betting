@@ -2,7 +2,7 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import type { components } from "@/types/generatedTypes";
 import { API_ENDPOINTS } from "@/lib/endpoints";
 
-type TNewestBetsResponse = components["schemas"]["Bet"];
+type TNewestBetsResponse = components["schemas"]["CreateBetDto"];
 
 const URL = import.meta.env.VITE_API_BASE_URL
 
