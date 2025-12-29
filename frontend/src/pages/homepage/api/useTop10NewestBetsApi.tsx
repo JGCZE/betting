@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import type { components } from "@/types/generatedTypes";
 import { API_ENDPOINTS } from "@/lib/endpoints";
 
@@ -6,11 +6,11 @@ type TNewestBetsResponse = components["schemas"]["CreateBetDto"];
 
 const URL = import.meta.env.VITE_API_BASE_URL
 
-const useTop15NewestBetsApi = () => {
-  const fetchTop15NewestBets = async (): Promise<TNewestBetsResponse> => {
+const useTop10NewestBetsApi = () => {
+  const fetchTop15NewestBets = async (): Promise<Array<TNewestBetsResponse>> => {
 
     const response = await fetch(`${URL}${API_ENDPOINTS.GET_NEWEST_BETS}`)
-    // await new Promise((resolve) => setTimeout(resolve, 3000));
+    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     if (!response.ok) {
       throw new Error("Network response was not ok");
@@ -19,12 +19,12 @@ const useTop15NewestBetsApi = () => {
     return response.json();
   };
 
-  const { data, error, isError, isPending } = useSuspenseQuery({
+  const { data, error, isError, isLoading } = useQuery({
     queryFn: fetchTop15NewestBets,
     queryKey: ["top15newestbets"],
   });
 
-  return { data, error, isError, isPending };
+  return { data, error, isError, isLoading };
 };
 
-export default useTop15NewestBetsApi;
+export default useTop10NewestBetsApi;
