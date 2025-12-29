@@ -25,7 +25,7 @@ const MakeBet = () => {
 
         <Stack />
 
-        <div className="flex gap-4">
+        <div className="flex gap-4 items-end">
           <CalendarComponent />
 
           <Visibility />

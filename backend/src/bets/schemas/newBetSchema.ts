@@ -1,10 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
-export type BetDocument = HydratedDocument<Bet>;
+export type BetDocument = HydratedDocument<Bets>;
 
 @Schema({ timestamps: true })
-export class Bet {
+export class Bets {
   @Prop({ required: true })
   challanger_name: string;
 
@@ -20,11 +20,14 @@ export class Bet {
   @Prop()
   betTitle: string;
 
+  @Prop({ required: true })
+  stake: string;
+
   @Prop({ required: true, unique: true })
   betUrl: string;
 
-  @Prop({ required: true })
-  stack: string;
+  @Prop()
+  description: string;
 
   @Prop({ required: true })
   deadline: string;
@@ -33,4 +36,4 @@ export class Bet {
   visibility: string;
 }
 
-export const BetSchema = SchemaFactory.createForClass(Bet);
+export const BetsSchema = SchemaFactory.createForClass(Bets);

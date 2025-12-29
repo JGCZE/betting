@@ -5,14 +5,18 @@ const Visibility = () => {
   const { control } = useFormContext()
 
   return (
-    <>
+    <div>
+      <p className="text-xs mb-4 text-gray-300">
+        Viditelnost sázky
+      </p>
+
       <Controller
         control={control}
         defaultValue="public"
         name="visibility"
         render={({ field }) => (
           <Select defaultValue={field.value} onValueChange={field.onChange}>
-            <SelectTrigger className="w-[180px] cursor-pointer">
+            <SelectTrigger className="w-36 cursor-pointer">
               <SelectValue placeholder="Private or public" />
             </SelectTrigger>
             <SelectContent>
@@ -25,7 +29,7 @@ const Visibility = () => {
           </Select>
         )}
       />
-    </>
+    </div>
   )
 }
 

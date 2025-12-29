@@ -23,7 +23,10 @@ export class CreateBetDto {
   betUrl: string;
 
   @ApiProperty()
-  stack: string;
+  stake: string;
+
+  @ApiProperty()
+  description?: string;
 
   @ApiProperty()
   deadline: string;

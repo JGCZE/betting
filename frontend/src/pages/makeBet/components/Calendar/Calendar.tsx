@@ -33,6 +33,10 @@ const CalendarComponent = () => {
 
   return (
     <div className="flex flex-col gap-3 w-full">
+      <p className="px-1 text-xs mb-0 text-gray-300">
+        Tvoje sázka má dedaline do ... {formatDate(date)}
+      </p>
+
       <div className="relative flex gap-2">
         <Input
           {...register("deadline", { required: true })}
@@ -88,11 +92,6 @@ const CalendarComponent = () => {
             />
           </PopoverContent>
         </Popover>
-      </div>
-
-      <div className="text-muted-foreground px-1 text-sm">
-        Tvoje sázka má dedaline do{" "}
-        <span className="font-medium">{formatDate(date)}</span>
       </div>
     </div>
   )

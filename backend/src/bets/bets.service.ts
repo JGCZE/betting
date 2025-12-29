@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Bet, BetDocument } from './schemas/newBetSchema';
+import { Bets, BetDocument } from './schemas/newBetSchema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateBetDto } from './dto/create-bet.dto';
@@ -10,7 +10,7 @@ import { BetsRepository } from './repository/bets.repository';
 export class BetsService {
   constructor(
     private readonly betsRepository: BetsRepository,
-    @InjectModel(Bet.name) private betModel: Model<BetDocument>
+    @InjectModel(Bets.name) private betModel: Model<BetDocument>
   ) { }
 
   async getNewestBets() {
