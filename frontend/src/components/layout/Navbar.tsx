@@ -2,7 +2,7 @@ import { Link } from '@tanstack/react-router'
 
 const Navbar = () => {
   return (
-    <div className='flex flex-col items-center border-gray border-r gap-4 mx-4 mt-8'>
+    <div className='flex-col items-center border-gray border-r gap-4 mx-4 mt-8 min-w-48 hidden sm:flex'>
       <Link className="navLink" to="/">
         Home
       </Link>

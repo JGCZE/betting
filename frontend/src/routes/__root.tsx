@@ -7,10 +7,10 @@ const RootLayout = () => (
   <>
     <Header />
 
-    <div className="page-layout grid grid-cols-5">
+    <div className="page-layout flex">
       <Navbar />
 
-      <div className='col-span-4 pt-8 px-4'>
+      <div className='pt-8 px-4'>
         <Outlet />
       </div>
     </div>

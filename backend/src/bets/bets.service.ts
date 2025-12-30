@@ -27,6 +27,7 @@ export class BetsService {
       betUrl,
     });
 
+    console.log("save to DB >>>", newBet.betTitle)
     return newBet.save()
   }
 }

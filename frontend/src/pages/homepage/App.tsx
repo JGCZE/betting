@@ -4,7 +4,7 @@ import Top10NewestBets from "./components/Top10NewestBets";
 const App = (): ReactElement => {
 
   return (
-    <div>
+    <div className="">
       Hello world
       <p className="text-blue-400">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi doloremque consectetur culpa

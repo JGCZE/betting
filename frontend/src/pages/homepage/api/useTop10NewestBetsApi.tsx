@@ -10,7 +10,7 @@ const useTop10NewestBetsApi = () => {
   const fetchTop10NewestBets = async (): Promise<Array<TNewestBetsResponse>> => {
 
     const response = await fetch(`${URL}${API_ENDPOINTS.GET_NEWEST_BETS}`)
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    //await new Promise((resolve) => setTimeout(resolve, 3000));
 
     if (!response.ok) {
       throw new Error("Network response was not ok");

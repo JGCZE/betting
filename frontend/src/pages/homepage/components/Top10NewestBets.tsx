@@ -1,58 +1,41 @@
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import useTop10NewestBetsApi from "../api/useTop10NewestBetsApi"
 import { Link } from "@tanstack/react-router"
+import Card from "@/components/ui/card"
+import useTop10NewestBetsApi from "../api/useTop10NewestBetsApi"
 
 const Top10NewestBets = () => {
-  const { data, isLoading } = useTop10NewestBetsApi()
+  const { data, isLoading } = useTop10NewestBetsApi();
 
   console.log("data from Top15NewestBets: ", data)
 
+  const formatDescription = (description: string) => {
+    if (description.length > 120) {
+      return description.slice(0, 120) + '...';
+    }
+    return description;
+  };
+
   return (
-    <div>
-      <Table>
-        <TableCaption>A list of your recent invoices.</TableCaption>
+    <div className="flex flex-col lg:flex-row gap-4 justify-center flex-wrap mt-10">
+      {data?.map(((bet, index) => {
+        const { betTitle, betUrl, challanger_name, deadline, description, rival_name, stake } = bet;
 
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w-[100px]">sázka</TableHead>
-            <TableHead>vyzyvatel</TableHead>
-            <TableHead>deadline</TableHead>
-            <TableHead className="">o co</TableHead>
-            <TableHead className="">detail</TableHead>
-          </TableRow>
-        </TableHeader>
+        return (
+          <Link params={{ betUrl }} to="/bets/$betUrl">
+            <Card className="p-4 lg:w-[360px] xl:w-[460px] border rounded flex flex-col" key={index}>
+              <h3 className="font-bold mb-2">{betTitle}</h3>
+              <span>Vyzyvatel: {challanger_name} </span>
+              <span>Rival: {rival_name}</span>
+              <span>stake: {stake}</span>
 
-        <TableBody>
-          {isLoading && (
-            <TableRow>
-              <TableHead className="text-center" colSpan={4}>
-                Loading...
-              </TableHead>
-            </TableRow>
-          )}
+              <span>desc: {formatDescription(description)}</span>
 
-          {!isLoading && data?.map((
-            { betTitle, challanger_name, deadline, stake, betUrl }, index) => (
-            <TableRow key={index}>
-              <TableCell className="font-medium">{betTitle}</TableCell>
-              <TableCell className="font-medium">{challanger_name}</TableCell>
-              <TableCell className="font-medium">{deadline}</TableCell>
-              <TableCell className="font-medium">{stake}</TableCell>
-              <TableCell className="font-medium">
-                <Link
-                  params={{ betUrl }}
-                  to={`/bet/${betUrl}`}
-                >
-                  DETAILS
-                </Link>
-              </TableCell>
-            </TableRow>
-          ))}
-
-        </TableBody>
-      </Table>
+              <span>exp: {deadline}</span>
+            </Card>
+          </Link>
+        )
+      }))}
     </div>
   )
 }
 
-export default Top10NewestBets
+export default Top10NewestBets;

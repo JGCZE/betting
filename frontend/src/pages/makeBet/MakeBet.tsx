@@ -18,7 +18,7 @@ const MakeBet = () => {
 
   return (
     <FormProvider {...methods}>
-      <form className="w-1/2 flex flex-col gap-8" onSubmit={methods.handleSubmit(onSubmit)}>
+      <form className="w-full flex flex-col gap-8" onSubmit={methods.handleSubmit(onSubmit)}>
         <Challanger />
 
         <Rival />
