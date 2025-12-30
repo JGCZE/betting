@@ -5,14 +5,13 @@ import Navbar from '../components/layout/Navbar'
 
 const RootLayout = () => (
   <>
-    <Header />
+    <div className='bg-[#3d5266] sticky top-0 z-10'>
+      <Header />
+      <Navbar />
+    </div>
 
     <div className="page-layout flex">
-      <Navbar />
-
-      <div className='pt-8 px-4'>
-        <Outlet />
-      </div>
+      <Outlet />
     </div>
 
     <TanStackRouterDevtools />

@@ -18,7 +18,7 @@ const MakeBet = () => {
 
   return (
     <FormProvider {...methods}>
-      <form className="w-full flex flex-col gap-8" onSubmit={methods.handleSubmit(onSubmit)}>
+      <form className="w-1/2 flex flex-col gap-8 mt-12" onSubmit={methods.handleSubmit(onSubmit)}>
         <Challanger />
 
         <Rival />
@@ -34,8 +34,8 @@ const MakeBet = () => {
         <Button className="w-1/2 cursor-pointer border-2" type="submit">
           Odelsat
         </Button>
+        <span className="text-red-400 text-sm">* jsou povinná pole</span>
       </form>
-      <span className="text-red-400 text-sm">* jsou povinná pole</span>
     </FormProvider>
   )
 }

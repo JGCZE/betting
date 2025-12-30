@@ -1,8 +1,7 @@
 import { Link } from '@tanstack/react-router'
 
-const Navbar = () => {
-  return (
-    <div className='flex-col items-center border-gray border-r gap-4 mx-4 mt-8 min-w-48 hidden sm:flex'>
+const Navbar = () => (
+    <div className='page-layout flex justify-between items-center h-10 bg-[#3d5266] border-b-2'>
       <Link className="navLink" to="/">
         Home
       </Link>
@@ -19,7 +18,6 @@ const Navbar = () => {
         Odznaky a statistiky
       </Link>
     </div>
-  )
-}
+);
 
 export default Navbar
