@@ -1,5 +1,5 @@
 import { type ReactElement } from "react";
-import AllBets from "./components/Allbets";
+import AllBets from "./components/AllBets";
 
 const App = (): ReactElement => {
 

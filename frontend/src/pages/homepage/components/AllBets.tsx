@@ -23,7 +23,7 @@ const AllBets = () => {
           className="block h-full bg-gray-700 rounded-2xl border-2 hover:bg-gray-600 shadow-2xl"
           key={index}
           // params={{ betUrl }}
-          to="/bets/$betUrl"
+          to={`/bets/${bet.betUrl}`}
         >
           <BetCard bet={bet} />
         </Link>

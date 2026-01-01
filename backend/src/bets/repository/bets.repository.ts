@@ -12,6 +12,7 @@ export class BetsRepository {
       .find()
       .sort({ createdAt: -1 })
       .limit(limit)
+      .select('betTitle challengerName rivalName stake deadline betUrl')
       .exec();
   }
 };

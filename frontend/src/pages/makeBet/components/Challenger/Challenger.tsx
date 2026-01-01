@@ -1,36 +1,36 @@
 import { useFormContext } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 
-const Challanger = () => {
+const Challenger = () => {
   const { formState: { errors }, register } = useFormContext()
-  const { challanger_email, challanger_name } = errors
+  const { challengerEmail, challengerName } = errors
 
   return (
     <div className="flex flex-col gap-4">
       <label className="text-red-400">Vyzyvatel</label>
       <Input
-        {...register("challanger_name", { minLength: 3, required: true })}
-        aria-invalid={challanger_name ? "true" : "false"}
+        {...register("challengerName", { minLength: 3, required: true })}
+        aria-invalid={challengerName ? "true" : "false"}
         placeholder="challanger name *"
       />
 
-      {challanger_name?.type === "required" && (
+      {challengerName?.type === "required" && (
         <p className="text-sm text-red-500" role="alert">first name is required</p>
       )}
 
       <Input
-        {...register("challanger_email",
+        {...register("challengerEmail",
           { pattern: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/, required: true })
         }
-        aria-invalid={challanger_email ? "true" : "false"}
+        aria-invalid={challengerEmail ? "true" : "false"}
         placeholder="email *"
       />
 
-      {challanger_email?.type === "required" && (
+      {challengerEmail?.type === "required" && (
         <p className="text-sm text-red-500" role="alert">email is required</p>
       )}
     </div>
   )
 }
 
-export default Challanger;
+export default Challenger;

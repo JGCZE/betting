@@ -6,16 +6,16 @@ export type BetDocument = HydratedDocument<Bets>;
 @Schema({ timestamps: true })
 export class Bets {
   @Prop({ required: true })
-  challanger_name: string;
+  challengerName: string;
 
   @Prop({ required: true })
-  challanger_email: string;
+  challengerEmail: string;
 
   @Prop({ required: true })
-  rival_name: string;
+  rivalName: string;
 
   @Prop()
-  rival_email: string;
+  rivalEmail: string;
 
   @Prop()
   betTitle: string;

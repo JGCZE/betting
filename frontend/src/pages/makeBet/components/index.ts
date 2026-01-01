@@ -1,4 +1,4 @@
-export { default as Challanger } from "./Challanger/Challanger"
+export { default as Challanger } from "./Challenger/Challenger"
 export { default as CalendarComponent } from "./Calendar/Calendar"
 export { default as Rival } from "./Rival/Rival"
 export { default as Stack } from "./Stack/Stack"

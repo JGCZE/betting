@@ -2,19 +2,19 @@ import { ApiProperty } from "@nestjs/swagger";
 
 export class CreateBetDto {
   @ApiProperty()
-  challanger_name: string;
+  challengerName: string;
 
   @ApiProperty({
-    description: "challanger email for contact",
+    description: "challenger email for contact",
     minimum: 3,
   })
-  challanger_email: string;
+  challengerEmail: string;
 
   @ApiProperty()
-  rival_name: string;
+  rivalName: string;
 
   @ApiProperty()
-  rival_email?: string;
+  rivalEmail?: string;
 
   @ApiProperty()
   betTitle: string;
