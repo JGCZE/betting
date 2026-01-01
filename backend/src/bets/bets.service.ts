@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { Bets, BetDocument } from './schemas/newBetSchema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -29,5 +29,19 @@ export class BetsService {
 
     console.log("save to DB >>>", newBet.betTitle)
     return newBet.save()
+  }
+
+  async getBetById(betUrl: string) {
+    if (!betUrl) {
+      throw new BadRequestException('Bet URL is required');
+    }
+
+    const betPageData = await this.betModel.findOne({ betUrl }).exec();
+
+    if (!betPageData) {
+      throw new NotFoundException('Data for BetPage not found');
+    }
+
+    return betPageData
   }
 }

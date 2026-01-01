@@ -13,8 +13,6 @@ const useMakeBetApi = () => {
         method: "POST"
       })
 
-      console.log("RESPONSE:", response)
-
       if (!response.ok) {
         throw new Error("Fail to create bet")
       }

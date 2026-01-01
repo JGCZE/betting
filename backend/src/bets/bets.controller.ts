@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { BetsService } from './bets.service';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateBetDto } from './dto/create-bet.dto';
@@ -15,5 +15,10 @@ export class BetsController {
   @Post('/createBet')
   async createBet(@Body() createBetDto: CreateBetDto) {
     return this.betsService.createBet(createBetDto);
+  }
+
+  @Get(':betUrl')
+  async findOne(@Param('betUrl') betUrl: string) {
+    return await this.betsService.getBetById(betUrl);
   }
 }

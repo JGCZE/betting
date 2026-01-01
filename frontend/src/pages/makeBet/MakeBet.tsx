@@ -1,8 +1,8 @@
 import { FormProvider, useForm } from "react-hook-form"
 import type { components } from "@/types/generatedTypes"
 import { Button } from "@/components/ui/button"
+import useMakeBetApi from "./api/useMakeBetApi"
 import { CalendarComponent, Challanger, Rival, Stack, Visibility } from "./components"
-import useMakeBetApi from "./useMakeBetApi/useMakeBetApi"
 
 export type TBetFormData = components["schemas"]["CreateBetDto"]
 
