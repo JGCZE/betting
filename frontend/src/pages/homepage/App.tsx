@@ -1,5 +1,5 @@
 import { type ReactElement } from "react";
-import Top10NewestBets from "./components/Top10NewestBets";
+import AllBets from "./components/Allbets";
 
 const App = (): ReactElement => {
 
@@ -12,7 +12,7 @@ const App = (): ReactElement => {
         voluptatibus fugiat similique, sed nam magnam illo, omnis eos!
       </p>
 
-      <Top10NewestBets />
+      <AllBets />
     </div>
   )
 }

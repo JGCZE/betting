@@ -14,7 +14,7 @@ export class BetsService {
   ) { }
 
   async getNewestBets() {
-    return this.betsRepository.findNewest(10)
+    return this.betsRepository.findNewest(16)
   }
 
   async createBet(createBetDto: CreateBetDto) {

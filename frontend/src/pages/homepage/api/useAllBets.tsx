@@ -10,20 +10,23 @@ const useAllBets = () => {
   const fetchAllBets = async (): Promise<Array<TAllBets>> => {
 
     const response = await fetch(`${URL}${API_ENDPOINTS.GET_NEWEST_BETS}`)
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    // await new Promise((resolve) => setTimeout(resolve, 3000));
 
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
 
-    return response.json();
+    const data = await response.json()
+
+    return data;
   };
 
   const { data, error, isError, isLoading } = useQuery({
-    gcTime: 60 * 1000, // 1 minute
+    gcTime: 60 * 1000 * 5, // 5 minute
     queryFn: fetchAllBets,
     queryKey: ["fetchAllBets"],
     retryOnMount: true,
+    staleTime: 60 * 1000, // 1 minuta
   });
 
   return { data, error, isError, isLoading };
