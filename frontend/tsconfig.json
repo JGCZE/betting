@@ -11,5 +11,6 @@
       "@apiTypes/*": ["./src/types/*"],
       "@ui/*": ["./src/components/ui/*"]
     }
-  }
+  },
+  "exclude": ["./src/types/*"]
 }

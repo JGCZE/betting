@@ -1,9 +1,8 @@
 import { Link } from '@tanstack/react-router';
 import { ArrowLeft } from 'lucide-react';
-import useBetApi from './api/useBetAp';
+import useBetApi from './api/useBetApi';
 
 const Bet = ({ betUrl }: { betUrl: string }) => {
-
   const { data, isError, isLoading } = useBetApi(betUrl)
 
   if (isLoading) {

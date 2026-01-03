@@ -1,5 +1,5 @@
 import Card from "@/components/ui/card";
-import type { TAllBets } from "../../api/useAllBets";
+import type { TAllBets } from "../../api/useAllBetsApi";
 
 interface IProps {
   bet: TAllBets;

@@ -1,10 +1,10 @@
 import { Link } from "@tanstack/react-router"
 import BetCardSkeleton from "@/components/ui/betCardSkeleton";
-import useAllBets from "../api/useAllBets";
+import useAllBetsApi from "../api/useAllBetsApi";
 import BetCard from "./BetCard/BetCard";
 
 const AllBets = () => {
-  const { data, isLoading } = useAllBets();
+  const { data, isLoading } = useAllBetsApi();
 
   if (isLoading) {
     return (
