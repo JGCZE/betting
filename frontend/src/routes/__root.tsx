@@ -5,8 +5,11 @@ import Navbar from '../components/layout/Navbar'
 
 const RootLayout = () => (
   <>
-    <div className='bg-[#3d5266] sticky top-0 z-10'>
+    <div className='bg-[#3d5266]'>
       <Header />
+    </div>
+
+    <div className='bg-[#3d5266]'>
       <Navbar />
     </div>
 
