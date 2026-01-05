@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as OverviewRouteImport } from './routes/overview'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as CreateBetRouteImport } from './routes/createBet'
 import { Route as BadgesRouteImport } from './routes/badges'
 import { Route as IndexRouteImport } from './routes/index'
@@ -18,6 +19,11 @@ import { Route as BetsBetUrlRouteImport } from './routes/bets.$betUrl'
 const OverviewRoute = OverviewRouteImport.update({
   id: '/overview',
   path: '/overview',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CreateBetRoute = CreateBetRouteImport.update({
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/badges': typeof BadgesRoute
   '/createBet': typeof CreateBetRoute
+  '/login': typeof LoginRoute
   '/overview': typeof OverviewRoute
   '/bets/$betUrl': typeof BetsBetUrlRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/badges': typeof BadgesRoute
   '/createBet': typeof CreateBetRoute
+  '/login': typeof LoginRoute
   '/overview': typeof OverviewRoute
   '/bets/$betUrl': typeof BetsBetUrlRoute
 }
@@ -60,19 +68,27 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/badges': typeof BadgesRoute
   '/createBet': typeof CreateBetRoute
+  '/login': typeof LoginRoute
   '/overview': typeof OverviewRoute
   '/bets/$betUrl': typeof BetsBetUrlRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/badges' | '/createBet' | '/overview' | '/bets/$betUrl'
+  fullPaths:
+    | '/'
+    | '/badges'
+    | '/createBet'
+    | '/login'
+    | '/overview'
+    | '/bets/$betUrl'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/badges' | '/createBet' | '/overview' | '/bets/$betUrl'
+  to: '/' | '/badges' | '/createBet' | '/login' | '/overview' | '/bets/$betUrl'
   id:
     | '__root__'
     | '/'
     | '/badges'
     | '/createBet'
+    | '/login'
     | '/overview'
     | '/bets/$betUrl'
   fileRoutesById: FileRoutesById
@@ -81,6 +97,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BadgesRoute: typeof BadgesRoute
   CreateBetRoute: typeof CreateBetRoute
+  LoginRoute: typeof LoginRoute
   OverviewRoute: typeof OverviewRoute
   BetsBetUrlRoute: typeof BetsBetUrlRoute
 }
@@ -92,6 +109,13 @@ declare module '@tanstack/react-router' {
       path: '/overview'
       fullPath: '/overview'
       preLoaderRoute: typeof OverviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/createBet': {
@@ -129,6 +153,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BadgesRoute: BadgesRoute,
   CreateBetRoute: CreateBetRoute,
+  LoginRoute: LoginRoute,
   OverviewRoute: OverviewRoute,
   BetsBetUrlRoute: BetsBetUrlRoute,
 }
