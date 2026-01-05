@@ -12,15 +12,10 @@ import { Bets, BetsSchema } from './bets/schemas/newBetSchema';
   imports: [
     ConfigModule.forRoot(),
     MongooseModule.forRoot(process.env.MONGODB_URI ?? ""),
-    
-    // DŮLEŽITÉ 1: Aby SeedService mohla pracovat s databází v rámci AppModule,
-    // musíme sem zaregistrovat schéma (stejně jako jsi to dělal v BetsModule).
-    MongooseModule.forFeature([{ name: Bets.name, schema: BetsSchema }]),
-    
+    MongooseModule.forFeature([{ name: Bets.name, schema: BetsSchema }]),    
     BetsModule
   ],
   controllers: [AppController],
-  // DŮLEŽITÉ 2: SeedService musí být v providers, jinak ji Controller nenajde
   providers: [AppService, SeedService], 
 })
 export class AppModule { }
