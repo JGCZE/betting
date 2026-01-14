@@ -7,13 +7,15 @@ import { ConfigModule } from '@nestjs/config';
 import { SeedService } from './seed/seed.service';
 // Musíš naimportovat Schéma a Class, aby je AppModule znal
 import { Bets, BetsSchema } from './bets/schemas/newBetSchema'; 
+import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     MongooseModule.forRoot(process.env.MONGODB_URI ?? ""),
     MongooseModule.forFeature([{ name: Bets.name, schema: BetsSchema }]),    
-    BetsModule
+    BetsModule, UsersModule, AuthModule
   ],
   controllers: [AppController],
   providers: [AppService, SeedService], 
