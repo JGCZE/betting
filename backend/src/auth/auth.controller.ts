@@ -7,9 +7,7 @@ export class AuthController {
 
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  login(@Body() input: { username: string; password: string } ) {
-    console.log("Login endpoint called >>>", input);
-  
+  login(@Body() input: { username: string; password: string } ) {  
     return this.authService.authenticate(input);
   }
 }
