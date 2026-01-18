@@ -5,15 +5,13 @@ import Navbar from '../components/layout/Navbar'
 
 const RootLayout = () => (
   <>
-    <div className='bg-[#3d5266]'>
+    <div className='bg-[#3d5266] fixed w-full top-0'>
       <Header />
-    </div>
 
-    <div className='bg-[#3d5266]'>
       <Navbar />
     </div>
 
-    <div className="page-layout flex">
+    <div className="page-layout flex mt-24">
       <Outlet />
     </div>
 
