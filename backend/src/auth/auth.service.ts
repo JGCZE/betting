@@ -1,6 +1,5 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { ac } from 'node_modules/@faker-js/faker/dist/airline-CLphikKp.cjs';
 import { UsersService } from 'src/users/users.service';
 
 type AuthInput = { username: string; password: string };
