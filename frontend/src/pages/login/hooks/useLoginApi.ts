@@ -6,9 +6,11 @@ type LoginData = {
   username: string;
 }
 
+const endpoint = '/auth/login';
+
 const useLoginApi = () => {
   const mutation = useMutation({
-    mutationFn: (data: LoginData) => httpPostRequest<LoginData>('/auth/login', data),
+    mutationFn: (data: LoginData) => httpPostRequest<LoginData>(endpoint, data),
     onError: (error) => {
       console.error("Login error:", error);
     },
@@ -23,4 +25,4 @@ const useLoginApi = () => {
   }
 }
 
-export default useLoginApi
+export default useLoginApi;

@@ -5,6 +5,7 @@ export const httpGetRequest = async<T>(
   options?: RequestInit,
 ): Promise<T | undefined> => {
   const response = await fetch(`${BASE_URL}${endpoint}`, {
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
       ...options?.headers,
@@ -25,6 +26,7 @@ export const httpPostRequest = async <T>(
 ): Promise<T | undefined> => {
   const response = await fetch(`${BASE_URL}${endpoint}`, {
     body: JSON.stringify(data),
+    credentials: 'include',
     headers: {
       "Content-type": "application/json; charset=UTF-8"
     },

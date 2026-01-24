@@ -5,14 +5,11 @@ const Login = () => {
   const [username, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-
   const { mutation } = useLoginApi();
-  console.log("LOGIN DATA RAW>>", mutation)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    console.log("Form submitted", { password, username });
     mutation.mutate({ password, username })
   }
 
@@ -20,7 +17,10 @@ const Login = () => {
     <>
       <h1>Login</h1>
 
-      <form className="border-2 border-white flex flex-col gap-8 p-4 w-80 mt-20" onSubmit={handleSubmit}>
+      <form
+        className="border-2 border-white flex flex-col gap-8 p-4 w-80 mt-20"
+        onSubmit={handleSubmit}
+      >
         <label htmlFor="">
           <p>Email</p>
 
@@ -59,6 +59,9 @@ const Login = () => {
         {mutation.isSuccess && (
           <div className="text-green-500 font-bold">
             Úspěšně přihlášeno!
+            <p>
+              vítej {mutation.data?.username}
+            </p>
           </div>
         )}
 

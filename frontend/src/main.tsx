@@ -9,6 +9,7 @@ import './index.css'
 
 const queryClient = new QueryClient()
 
+import { AuthProvider } from './context/AuthContext'
 import { routeTree } from './routeTree.gen'
 
 // Create a new router instance
@@ -24,7 +25,9 @@ declare module '@tanstack/react-router' {
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </QueryClientProvider>
   </StrictMode>,
 )
