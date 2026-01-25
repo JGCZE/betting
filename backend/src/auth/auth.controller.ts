@@ -10,7 +10,7 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @Post('login')
   async login(
-    @Body() input: { username: string; password: string },
+    @Body() input: { userName: string; password: string },
     @Res({ passthrough: true }) response: Response,
   ) {
     const result = await this.authService.authenticate(input);
@@ -24,7 +24,7 @@ export class AuthController {
 
     return {
       userId: result?.userId,
-      username: result?.username
+      userName: result?.userName
     }
   }
 
