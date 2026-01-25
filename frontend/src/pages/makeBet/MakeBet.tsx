@@ -8,7 +8,6 @@ export type TBetFormData = components["schemas"]["CreateBetDto"]
 
 const MakeBet = () => {
   const methods = useForm<TBetFormData>()
-
   const { mutation } = useMakeBetApi()
 
   const onSubmit = (data: TBetFormData) => {
