@@ -2,7 +2,7 @@ import { Link } from '@tanstack/react-router'
 import useAuth from '@/context/AuthContext';
 
 const Navbar = () => {
-  const { username } = useAuth()
+  const { userName } = useAuth()
 
   return (
     <div className='page-layout flex justify-between items-center h-10 bg-[#3d5266] border-b-2 sticky top-0'>
@@ -15,12 +15,12 @@ const Navbar = () => {
       </Link>
 
       <Link className="navLink" to="/overview">
-        Přehled všech sázek
+        Všechny sázky
       </Link>
 
-      <Link className="navLink" to="/badges">
+      {!!userName && <Link className="navLink" to="/badges">
         Odznaky a statistiky
-      </Link>
+      </Link>}
     </div>
   );
 }

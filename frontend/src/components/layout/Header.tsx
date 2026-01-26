@@ -2,12 +2,12 @@ import { Link } from "@tanstack/react-router";
 import { BsPersonCheckFill } from "react-icons/bs";
 import useAuth from "@/context/AuthContext";
 import Register from "@/pages/register/RegisterPage";
-
+import LogOut from "./components/LogOut";
 
 const Header = () => {
-  const { username } = useAuth()
+  const { userName } = useAuth()
 
-  const loggedInUser = username?.username
+  const loggedInUser = userName?.userName
 
   return (
     <div className="page-layout flex justify-between items-center h-14 bg-[#3d5266] border-b-2">
@@ -25,12 +25,7 @@ const Header = () => {
               {loggedInUser}
             </p>
 
-            <Link
-              className="ml-8 text-sm text-gray-400"
-              to="/login"
-            >
-              Odhlásit
-            </Link>
+            <LogOut />
           </div>
         ) : (
           <div className="flex justify-center items-center gap-4">

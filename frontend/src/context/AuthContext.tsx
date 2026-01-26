@@ -4,13 +4,13 @@ import { httpGetRequest } from "@/api/httpClient";
 
 type User = {
   userId: number;
-  username: string;
+  userName: string;
 }
 
 type AuthContextType = {
   isError: boolean;
   isLoading: boolean;
-  username?: User;
+  userName?: User;
 }
 
 interface IAuthProvider {
@@ -22,9 +22,7 @@ const endpoint = '/auth/me'
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export const AuthProvider = ({ children }: IAuthProvider) => {
-  console.log("TEST CONTEXT")
-
-  const { data: username, isError, isLoading } = useQuery({
+  const { data: userName, isError, isLoading } = useQuery({
     queryFn: () => httpGetRequest<User>(endpoint),
     queryKey: ["authentiaction"],
     refetchOnWindowFocus: false,
@@ -32,7 +30,7 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
   })
 
   return (
-    <AuthContext value={{ isError, isLoading, username }}>
+    <AuthContext value={{ isError, isLoading, userName }}>
       {children}
     </AuthContext>
   )

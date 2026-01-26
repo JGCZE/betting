@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
 
       request.user = {
         userId: tokenPayload.sub,
-        username: tokenPayload.username,
+        userName: tokenPayload.userName,
       };
 
       return true;

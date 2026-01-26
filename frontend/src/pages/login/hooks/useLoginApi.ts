@@ -3,7 +3,7 @@ import { httpPostRequest } from "@/api/httpClient";
 
 type LoginData = {
   password: string;
-  username: string;
+  userName: string;
 }
 
 const endpoint = '/auth/login';

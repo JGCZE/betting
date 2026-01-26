@@ -2,7 +2,7 @@ import { useState } from "react";
 import useLoginApi from "../hooks/useLoginApi";
 
 const Login = () => {
-  const [username, setUserName] = useState<string>("");
+  const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const { mutation } = useLoginApi();
@@ -10,7 +10,7 @@ const Login = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    mutation.mutate({ password, username })
+    mutation.mutate({ password, userName })
   }
 
   return (
@@ -31,7 +31,7 @@ const Login = () => {
             onChange={(e) => setUserName(e.target.value)}
             placeholder="Email"
             type="text"
-            value={username}
+            value={userName}
           />
         </label>
 
@@ -60,7 +60,7 @@ const Login = () => {
           <div className="text-green-500 font-bold">
             Úspěšně přihlášeno!
             <p>
-              vítej {mutation.data?.username}
+              vítej {mutation.data?.userName}
             </p>
           </div>
         )}
