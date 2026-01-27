@@ -7,10 +7,14 @@ import { Model } from "mongoose";
 export class BetsRepository {
   constructor(@InjectModel(Bets.name) private betModel: Model<BetDocument>) { }
 
-  async findNewest(limit: number) {
+  async findNewest(pageNumber: number,limit: number) {
+    console.log(">> PAGE NUMBER, LIMIT <<", pageNumber, limit);
+    const skip = pageNumber * limit;
+
     return this.betModel
       .find()
       .sort({ createdAt: -1 })
+      .skip(skip)
       .limit(limit)
       .select('betTitle challengerName rivalName stake deadline betUrl')
       .exec();

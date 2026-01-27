@@ -13,8 +13,11 @@ export class BetsService {
     @InjectModel(Bets.name) private betModel: Model<BetDocument>
   ) { }
 
-  async getNewestBets() {
-    return this.betsRepository.findNewest(16)
+  async getNewestBets(page: string, limit: string) {
+    const pageNumber = parseInt(page) || 0;
+    const limitNumber = parseInt(limit) || 32;
+  
+    return this.betsRepository.findNewest(pageNumber, limitNumber);
   }
 
   async createBet(createBetDto: CreateBetDto) {

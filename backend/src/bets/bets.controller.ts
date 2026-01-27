@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { BetsService } from './bets.service';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BetResponseDto, CreateBetDto, GetBetsHomePageDto } from './dto/create-bet.dto';
@@ -13,8 +13,11 @@ export class BetsController {
     description: 'Returns newest bets',
     type: [GetBetsHomePageDto]
   })
-  async getNewestBets() {
-    return this.betsService.getNewestBets();
+  async getNewestBets(
+    @Query('page') page: string, 
+    @Query('limit') limit: string
+  ) {
+    return this.betsService.getNewestBets(page, limit);
   }
 
   @Post('/createBet')

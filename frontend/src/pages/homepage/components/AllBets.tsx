@@ -1,12 +1,14 @@
 import { Link } from "@tanstack/react-router"
+import InfiniteScroll from "react-infinite-scroll-component";
 import BetCardSkeleton from "@/components/ui/betCardSkeleton";
 import useAllBetsApi from "../api/useAllBetsApi";
 import BetCard from "./BetCard/BetCard";
 
-const AllBets = () => {
-  const { data, isLoading } = useAllBetsApi();
 
-  if (isLoading) {
+const AllBets = () => {
+  const { data, fetchNextPage, hasNextPage, isLoading } = useAllBetsApi();
+
+  if (isLoading || !data) {
     return (
       <div className="grid grid-cols-[repeat(auto-fit,minmax(290px,1fr))] gap-4 p-4">
         {Array.from({ length: 8 }).map((_, index) => (
@@ -15,21 +17,32 @@ const AllBets = () => {
       </div>
     );
   }
+  const handleSchroll = () => {
+    console.log("schroll");
+    fetchNextPage();
+  }
 
   return (
-    <div className="grid grid-cols-[repeat(auto-fit,minmax(290px,1fr))] gap-4 p-4">
-      {data?.map(((bet, index) => (
-        <Link
-          className="block h-full bg-gray-700 rounded-2xl border-2 hover:bg-gray-600 shadow-2xl"
-          key={index}
-          // params={{ betUrl }}
-          to={`/bets/${bet.betUrl}`}
-        >
-          <BetCard bet={bet} />
-        </Link>
-      )
-      ))}
-    </div>
+    <InfiniteScroll
+      dataLength={data.length}
+      hasMore={true}
+      loader={<h4>Loading...</h4>}
+      next={handleSchroll}
+    >
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(290px,1fr))] gap-4 p-4">
+        {data?.map(((bet, index) => (
+          <Link
+            className="block h-full bg-gray-700 rounded-2xl border-2 hover:bg-gray-600 shadow-2xl"
+            key={index}
+            // params={{ betUrl }}
+            to={`/bets/${bet.betUrl}`}
+          >
+            <BetCard bet={bet} />
+          </Link>
+        )
+        ))}
+      </div>
+    </InfiniteScroll>
   )
 }
 
