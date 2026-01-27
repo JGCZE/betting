@@ -17,17 +17,21 @@ const AllBets = () => {
       </div>
     );
   }
-  const handleSchroll = () => {
-    console.log("schroll");
-    fetchNextPage();
-  }
 
   return (
     <InfiniteScroll
       dataLength={data.length}
-      hasMore={true}
-      loader={<h4>Loading...</h4>}
-      next={handleSchroll}
+      endMessage={
+        <p className="text-center py-4 text-gray-400">To je vše, žádné další sázky.</p>
+      }
+      hasMore={hasNextPage}
+      loader={
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(290px,1fr))] gap-4 p-4">
+          <BetCardSkeleton />
+        </div>
+      }
+      next={fetchNextPage}
+      scrollThreshold={0.99}
     >
       <div className="grid grid-cols-[repeat(auto-fit,minmax(290px,1fr))] gap-4 p-4">
         {data?.map(((bet, index) => (
@@ -35,7 +39,7 @@ const AllBets = () => {
             className="block h-full bg-gray-700 rounded-2xl border-2 hover:bg-gray-600 shadow-2xl"
             key={index}
             // params={{ betUrl }}
-            to={`/bets/${bet.betUrl}`}
+            to={`/bets/${bet?.betUrl}`}
           >
             <BetCard bet={bet} />
           </Link>
