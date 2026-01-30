@@ -27,6 +27,9 @@ export class Bets {
   betUrl: string;
 
   @Prop()
+  category: string;
+
+  @Prop()
   description: string;
 
   @Prop({ required: true })

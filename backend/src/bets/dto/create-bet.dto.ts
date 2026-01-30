@@ -23,6 +23,9 @@ export class CreateBetDto {
   betUrl: string;
 
   @ApiProperty()
+  category?: string;
+
+  @ApiProperty()
   stake: string;
 
   @ApiProperty()

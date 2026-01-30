@@ -84,6 +84,54 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/user/registration": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["UserController_createUser"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/auth/login": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["AuthController_login"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/auth/me": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["AuthController_getUserInfo"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -105,6 +153,7 @@ export interface components {
             rivalEmail: string;
             betTitle: string;
             betUrl: string;
+            category: string;
             stake: string;
             description: string;
             deadline: string;
@@ -115,12 +164,19 @@ export interface components {
             rivalName: string;
             betTitle: string;
             betUrl: string;
+            category: string;
             stake: string;
             description: string;
             deadline: string;
             visibility: string;
             createdAt: string;
             updatedAt: string;
+        };
+        CreateUserDto: {
+            userName: string;
+            /** @description user email */
+            email: string;
+            password: string;
         };
     };
     responses: never;
@@ -167,7 +223,10 @@ export interface operations {
     };
     BetsController_getNewestBets: {
         parameters: {
-            query?: never;
+            query: {
+                page: string;
+                limit: string;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -225,6 +284,61 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["BetResponseDto"];
                 };
+            };
+        };
+    };
+    UserController_createUser: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateUserDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    AuthController_login: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    AuthController_getUserInfo: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
         };
     };

@@ -1,6 +1,7 @@
 import { useFormContext } from "react-hook-form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { Category } from "./components"
 
 const Stakes = () => {
   const { formState: { errors }, register } = useFormContext()
@@ -24,12 +25,14 @@ const Stakes = () => {
         placeholder="flaška Moetu"
       />
 
+      <Category />
+
       <p className="text-xs mb-2 text-gray-300">detail sázky</p>
       <Textarea
         {...register("description", { minLength: 3 })}
         aria-invalid={stack ? "true" : "false"}
         className="pb-14"
-        // todo random generovaný vtipný placeholdry 
+        // todo: random generovaný vtipný placeholdry 
         placeholder="... vsázíme se že do konce roku 2026 uběhnu marathon pod 4 hodiny v papučích a kostýmu mušketýra*"
       />
 
