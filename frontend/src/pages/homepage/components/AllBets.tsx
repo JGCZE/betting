@@ -6,7 +6,15 @@ import BetCard from "./BetCard/BetCard";
 
 
 const AllBets = () => {
-  const { data, fetchNextPage, hasNextPage, isLoading } = useAllBetsApi();
+  const { data, error, fetchNextPage, hasNextPage, isLoading } = useAllBetsApi();
+
+  if (error) {
+    return (
+      <div className="p-4 text-red-500">
+        Došlo k chybě při načítání sázek.
+      </div>
+    );
+  }
 
   if (isLoading || !data) {
     return (
@@ -34,16 +42,15 @@ const AllBets = () => {
       scrollThreshold={0.99}
     >
       <div className="grid grid-cols-[repeat(auto-fit,minmax(290px,1fr))] gap-4 p-4">
-        {data?.map(((bet, index) => (
+        {data.map((bet) => (
           <Link
             className="block h-full bg-gray-700 rounded-2xl border-2 hover:bg-gray-600 shadow-2xl"
-            key={index}
-            // params={{ betUrl }}
-            to={`/bets/${bet?.betUrl}`}
+            key={bet.betUrl}
+            params={{ betUrl: bet.betUrl }}
+            to="/bets/$betUrl"
           >
             <BetCard bet={bet} />
           </Link>
-        )
         ))}
       </div>
     </InfiniteScroll>

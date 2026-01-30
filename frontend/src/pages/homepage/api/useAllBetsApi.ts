@@ -7,31 +7,46 @@ export type TAllBets = components["schemas"]["GetBetsHomePageDto"];
 
 const LIMIT = 36
 
-const useAllBetsApi = () => {
-  /* const { data, error, isError, isLoading } = useQuery({
-    //gcTime: 60 * 1000 * 5, // 5 minut
-    queryFn: () => httpGetRequest<Array<TAllBets>>(API_ENDPOINTS.GET_NEWEST_BETS),
-    queryKey: ["fetchAllBets"],
-    retryOnMount: true,
-    //staleTime: 60 * 1000, // 1 minuta
-  }); */
+interface IReturn {
+  data?: Array<TAllBets>;
+  error: boolean;
+  fetchNextPage: () => void;
+  hasNextPage: boolean;
+  isFetchingNextPage: boolean;
+  isLoading: boolean;
+}
 
+const useAllBetsApi = (): IReturn => {
   const fetchProjects = async ({ pageParam }: { pageParam: number }) => {
-    console.log("PAGE PARAM: >>", pageParam);
+    try {
+      const res = await httpGetRequest<Array<TAllBets>>(
+        `${API_ENDPOINTS.GET_NEWEST_BETS}?pageXXX=${pageParam}&limit=${LIMIT}`
+      );
 
-    const res = await httpGetRequest<Array<TAllBets>>(
-      `${API_ENDPOINTS.GET_NEWEST_BETS}?page=${pageParam}&limit=${LIMIT}`
-    );
+      if (!res || !res.length) {
+        throw new Error("No bets found");
+      }
 
-    return res;
+      return res;
+    } catch (error) {
+      console.error("Error fetching bets:", error);
+      throw error;
+    }
   };
 
-  const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } = useInfiniteQuery({
-    getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => {
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isError: error,
+    isFetchingNextPage,
+    isLoading,
+  } = useInfiniteQuery({
+    getNextPageParam: (lastPage, allPages) => {
 
-      console.log("allPages", allPages)
-      console.log("lastPageParam", lastPageParam)
-      console.log("allPageParams", allPageParams)
+      if (!Array.isArray(lastPage)) {
+        return undefined;
+      }
 
       return lastPage?.length < LIMIT ? undefined : allPages.length;
     },
@@ -40,17 +55,17 @@ const useAllBetsApi = () => {
     queryKey: ["fetchAllBetsInfinite"],
   });
 
-  const dataFormatted = data?.pages.flatMap(page => page);
-
+  const dataFormatted = data?.pages
+    .flatMap(page => page)
+    
   return {
     data: dataFormatted,
+    error,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
     isLoading
   }
-
-  //return { data, error, isError, isLoading };
 };
 
 export default useAllBetsApi;
