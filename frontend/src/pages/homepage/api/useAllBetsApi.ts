@@ -20,7 +20,7 @@ const useAllBetsApi = (): IReturn => {
   const fetchProjects = async ({ pageParam }: { pageParam: number }) => {
     try {
       const res = await httpGetRequest<Array<TAllBets>>(
-        `${API_ENDPOINTS.GET_NEWEST_BETS}?pageXXX=${pageParam}&limit=${LIMIT}`
+        `${API_ENDPOINTS.GET_NEWEST_BETS}?page=${pageParam}&limit=${LIMIT}`
       );
 
       if (!res || !res.length) {
@@ -43,12 +43,11 @@ const useAllBetsApi = (): IReturn => {
     isLoading,
   } = useInfiniteQuery({
     getNextPageParam: (lastPage, allPages) => {
-
-      if (!Array.isArray(lastPage)) {
+      if (lastPage.length < LIMIT) {
         return undefined;
       }
 
-      return lastPage?.length < LIMIT ? undefined : allPages.length;
+      return allPages.length + 1;
     },
     initialPageParam: 1,
     queryFn: fetchProjects,
@@ -57,7 +56,7 @@ const useAllBetsApi = (): IReturn => {
 
   const dataFormatted = data?.pages
     .flatMap(page => page)
-    
+
   return {
     data: dataFormatted,
     error,
