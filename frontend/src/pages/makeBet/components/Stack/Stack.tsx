@@ -8,7 +8,7 @@ const Stakes = () => {
   const { stack } = errors
 
   return (
-    <div>
+    <div className="overflow-hidden">
       <p className="mb-4">Sázka</p>
 
       <p className="text-xs mb-2 text-gray-300">název sázky</p>

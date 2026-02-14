@@ -1,20 +1,7 @@
 import type { ReactElement } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { Combobox, ComboboxContent, ComboboxEmpty, ComboboxInput, ComboboxItem, ComboboxList } from '@/components/ui/combobox';
-
-const stack = [
-  "Alkonol",
-  "Peníze",
-  "Úkol/ výzva",
-  "Jídlo",
-  "Služba",
-  "Veřejné ponížení",
-  "Dárek",
-  "Zboží",
-  "Ostatní",
-  "Čest",
-  "Udělám místo tebe..."
-] as const
+import { STACK } from '@/lib/config';
 
 const Category = (): ReactElement => {
   const { control } = useFormContext();
@@ -30,7 +17,7 @@ const Category = (): ReactElement => {
         name="category"
         render={({ field }) => (
           <Combobox
-            items={stack}
+            items={STACK}
             onValueChange={field.onChange}
             value={field.value}
           >

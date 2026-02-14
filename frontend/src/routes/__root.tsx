@@ -5,7 +5,7 @@ import Navbar from '../components/layout/Navbar'
 
 const RootLayout = () => (
   <>
-    <div className='bg-[#3d5266] fixed w-full top-0'>
+    <div className='bg-[#3d5266] fixed w-full top-0 z-50'>
       <Header />
 
       <Navbar />

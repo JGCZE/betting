@@ -84,6 +84,13 @@
     @apply max-w-7xl mx-auto md:px-4;
   }
   .navLink {
-    @apply [&.active]:font-semibold font-light [&.active]:text-blue-400;
+    @apply [&.active]:font-semibold font-light [&.active]:text-blue-400 whitespace-nowrap;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 }

@@ -2,7 +2,9 @@ import { Link } from "@tanstack/react-router";
 import { BsPersonCheckFill } from "react-icons/bs";
 import useAuth from "@/context/AuthContext";
 import Register from "@/pages/register/RegisterPage";
+import { Input } from "../ui/input";
 import LogOut from "./components/LogOut";
+
 
 const Header = () => {
   const { userName } = useAuth()
@@ -12,6 +14,8 @@ const Header = () => {
   return (
     <div className="page-layout flex justify-between items-center h-14 bg-[#3d5266] border-b-2">
       <div>LOGO</div>
+
+      <Input className="max-w-sm" placeholder="Hledat sázky..." />
 
       <div className="sm:hidden">MENU</div>
 
