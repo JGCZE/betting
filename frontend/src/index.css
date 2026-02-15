@@ -6,6 +6,17 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --color-navy-950: var(--navy-950);
+  --color-navy-900: var(--navy-900);
+  --color-navy-800: var(--navy-800);
+  --color-navy-700: var(--navy-700);
+  --color-navy-600: var(--navy-600);
+  --color-navy-500: var(--navy-500);
+  --color-navy-400: var(--navy-400);
+  --color-navy-300: var(--navy-300);
+  --color-green-primary: var(--green-primary);
+  --color-green-darker: var(--green-darker);
+  --color-red-primary: var(--red-primary);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -40,7 +51,18 @@
 }
 
 :root {
-  --background: #1e3145;
+  --green-primary: #10b981;
+  --green-darker: #059669;
+  --red-primary: #ef4444;
+  --navy-950: #141e2b;
+  --navy-900: #1a2b3d;
+  --navy-800: #223a52;
+  --navy-700: #2c4a64;
+  --navy-600: #3d5266;
+  --navy-500: #4e6478;
+  --navy-400: #7a92a6;
+  --navy-300: #a3b5c5;
+  --background: var(--navy-900);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
@@ -84,7 +106,7 @@
     @apply max-w-7xl mx-auto md:px-4;
   }
   .navLink {
-    @apply [&.active]:font-semibold font-light [&.active]:text-blue-400 whitespace-nowrap;
+    @apply [&.active]:font-semibold font-light [&.active]:text-sky-400 whitespace-nowrap;
   }
   .hide-scrollbar {
     -ms-overflow-style: none;

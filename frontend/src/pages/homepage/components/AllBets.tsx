@@ -30,7 +30,7 @@ const AllBets = () => {
     <InfiniteScroll
       dataLength={data.length}
       endMessage={
-        <p className="text-center py-4 text-gray-400">To je vše, žádné další sázky.</p>
+        <p className="text-center py-4 text-navy-400">To je vše, žádné další sázky.</p>
       }
       hasMore={hasNextPage}
       loader={
@@ -44,7 +44,7 @@ const AllBets = () => {
       <div className="grid grid-cols-[repeat(auto-fit,minmax(290px,1fr))] gap-4 p-4">
         {data.map((bet) => (
           <Link
-            className="bg-[#24394F] rounded-2xl border-2 hover:bg-[#2A4159] shadow-2xl"
+            className="bg-navy-800 rounded-2xl border-2 border-navy-700 hover:bg-navy-700 shadow-2xl"
             key={bet._id}
             params={{ betUrl: bet.betUrl }}
             to="/bets/$betUrl"

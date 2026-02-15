@@ -1,9 +1,9 @@
 const Skeleton = ({ className }: { className?: string }) => (
-  <div className={`animate-pulse bg-gray-500/50 rounded ${className}`} />
+  <div className={`animate-pulse bg-navy-500/50 rounded ${className}`} />
 );
 
 const BetCardSkeleton = () => (
-  <div className="h-full p-4 flex flex-col gap-4 bg-gray-700 rounded-2xl border-2 border-gray-600">
+  <div className="h-full p-4 flex flex-col gap-4 bg-navy-700 rounded-2xl border-2 border-navy-600">
 
     <Skeleton className="h-7 w-3/4 mb-2" />
 

@@ -9,14 +9,14 @@ import { BackToLobby, Badge, BetFooter, DetailSection, Players, Stake } from './
 const Bet = ({ betUrl }: { betUrl: string }) => {
   const { data, isError, isLoading } = useBetApi(betUrl)
 
-  if (isLoading) return <div className="p-8 text-center text-gray-400 animate-pulse">Načítám arénu...</div>
+  if (isLoading) return <div className="p-8 text-center text-navy-400 animate-pulse">Načítám arénu...</div>
 
   if (isError || !data) {
     return (
       <div className="p-8 text-center text-red-500">
         <AlertTriangle className="mx-auto h-12 w-12 mb-4 opacity-50" />
         Sázka nenalezena.
-        <Link className="text-blue-500 underline mt-4 block" to="/">Zpět na přehled</Link>
+        <Link className="text-sky-400 underline mt-4 block" to="/">Zpět na přehled</Link>
       </div>
     )
   }
@@ -32,11 +32,11 @@ const Bet = ({ betUrl }: { betUrl: string }) => {
   const timeLeft = Math.ceil((deadline - now) / (1000 * 60 * 60 * 24)); // Dny do konce
 
   return (
-    <div className="max-w-2xl mx-auto p-4 space-y-6">
+    <div className="w-2xl mx-auto p-4 space-y-6">
 
       <BackToLobby />
 
-      <div className="bg-gray-800 border border-gray-700 rounded-3xl overflow-hidden shadow-2xl relative">
+      <div className="bg-navy-800 border border-navy-700 rounded-3xl overflow-hidden shadow-2xl relative">
         <Badge
           timeLeft={timeLeft}
         />

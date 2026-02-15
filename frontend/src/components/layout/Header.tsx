@@ -12,7 +12,7 @@ const Header = () => {
   const loggedInUser = userName?.userName
 
   return (
-    <div className="page-layout flex justify-between items-center h-14 bg-[#3D5266] border-b-2">
+    <div className="page-layout flex justify-between items-center h-14 bg-navy-600 border-b-2">
       <img src="/logo.svg" />
 
       <Input className="max-w-sm" placeholder="Hledat sázky..." />
@@ -23,7 +23,7 @@ const Header = () => {
 
         {loggedInUser ? (
           <div className="flex gap-2 justify-center items-center">
-            <BsPersonCheckFill className="size-8 text-green-300" />
+            <BsPersonCheckFill className="size-8 text-green-primary" />
 
             <p className="font-bold">
               {loggedInUser}
@@ -36,7 +36,7 @@ const Header = () => {
             <Register />
 
             <Link
-              className="bg-blue-500 py-2 px-6 rounded-2xl hover:bg-blue-600"
+              className="bg-sky-500 py-2 px-6 rounded-2xl hover:bg-sky-600"
               to="/login"
             >
               Přihlásit
