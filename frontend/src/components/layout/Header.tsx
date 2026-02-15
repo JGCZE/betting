@@ -12,8 +12,8 @@ const Header = () => {
   const loggedInUser = userName?.userName
 
   return (
-    <div className="page-layout flex justify-between items-center h-14 bg-[#3d5266] border-b-2">
-      <div>LOGO</div>
+    <div className="page-layout flex justify-between items-center h-14 bg-[#3D5266] border-b-2">
+      <img src="/logo.svg" />
 
       <Input className="max-w-sm" placeholder="Hledat sázky..." />
 

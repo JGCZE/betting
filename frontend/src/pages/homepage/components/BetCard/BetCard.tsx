@@ -28,7 +28,7 @@ const BetCard = ({ bet }: IProps) => {
   const { betTitle, challengerName, deadline, rivalName, stake } = bet;
 
   return (
-    <Card className="h-full p-2 flex flex-col text-sm">
+    <Card className="h-full p-3 flex flex-col text-sm">
       <h3 className="font-bold line-clamp-2">
         {betTitle}
       </h3>
@@ -43,13 +43,13 @@ const BetCard = ({ bet }: IProps) => {
         </div>
 
         <InfoRow
-          className="bg-green-300 text-green-900 py-0.5 px-3 rounded"
+          className="bg-[#24394F] text-emerald-300 border border-[#2E465F] px-3 py-1 rounded-md text-sm"
           label="Stake"
           value={stake}
         />
 
         <InfoRow
-          className="bg-red-400 text-black py-0.5 px-3 rounded"
+          className="bg-[#24394F] text-rose-300 border border-[#2E465F] px-3 py-1 rounded-md text-sm"
           label="Exp"
           value={deadline}
         />

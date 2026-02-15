@@ -5,7 +5,8 @@ interface IProps {
   type: "Challenger" | "Rival";
 }
 
-const playerStyle = "rounded-full border-2 size-14 flex items-center justify-center font-bold text-xl";
+const playerStyle =
+  "rounded-full size-14 flex items-center justify-center font-semibold text-lg border";
 
 const Player = ({ title, type }: IProps) => (
   <div className="flex flex-col items-center gap-4">
@@ -13,10 +14,9 @@ const Player = ({ title, type }: IProps) => (
       {type}
     </h4>
 
-    <span className={clsx(playerStyle, type === "Rival" ?
-      "bg-red-500 border-2 border-red-700 opacity-70"
-      :
-      "bg-green-600 border-2 border-green-500 opacity-70")}
+    <span className={clsx(playerStyle, type === "Rival"
+      ? "bg-rose-500/15 border-rose-400 text-rose-300"
+      : "bg-emerald-500/15 border-emerald-400 text-emerald-300")}
     >
       {title.slice(0, 2)}
     </span>
