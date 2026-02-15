@@ -1,10 +1,12 @@
 import { Link } from '@tanstack/react-router';
 import useAuth from '@/context/AuthContext';
-import { STACK } from '@/lib/config';
+import { ECategory } from '@/lib/config';
 import { Button } from '../ui/button';
 
 const Navbar = () => {
   const { userName } = useAuth()
+
+  const STACK = Object.values(ECategory)
 
   return (
     <div className='page-layout flex gap-6 items-center h-10 bg-navy-600 border-b-2 sticky top-0'>

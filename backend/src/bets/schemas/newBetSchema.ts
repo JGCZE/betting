@@ -3,6 +3,20 @@ import { HydratedDocument } from 'mongoose';
 
 export type BetDocument = HydratedDocument<Bets>;
 
+export enum ECategory {
+  ALCOHOL = "Alkohol",
+  MONEY = "Peníze",
+  CHALLENGE = "Úkol/ výzva",
+  FOOD = "Jídlo",
+  SERVCIE = "Služba",
+  HUMILIATION = "Veřejné ponížení",
+  GIFT = "Dárek",
+  ITEMS = "Zboží",
+  OTHERS = "Ostatní",
+  HONOR = "Čest",
+  IWILLDO = "Udělám místo tebe..."
+}
+
 @Schema({ timestamps: true })
 export class Bets {
   @Prop({ required: true })
@@ -27,7 +41,7 @@ export class Bets {
   betUrl: string;
 
   @Prop()
-  category: string;
+  category: ECategory;
 
   @Prop()
   description: string;

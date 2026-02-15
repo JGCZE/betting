@@ -140,6 +140,7 @@ export interface components {
             betTitle: string;
             challengerName: string;
             rivalName: string;
+            category: string;
             stake: string;
             deadline: string;
             betUrl: string;

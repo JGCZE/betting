@@ -1,10 +1,16 @@
 import type { ReactElement } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { Combobox, ComboboxContent, ComboboxEmpty, ComboboxInput, ComboboxItem, ComboboxList } from '@/components/ui/combobox';
-import { STACK } from '@/lib/config';
+import { ECategory } from '@/lib/config';
+
+const czToKey = Object.fromEntries(
+  Object.entries(ECategory).map(([key, label]) => [label, key])
+) as Record<ECategory, keyof typeof ECategory>
 
 const Category = (): ReactElement => {
   const { control } = useFormContext();
+
+  const categoryLabels = Object.values(ECategory)
 
   return (
     <div className=''>
@@ -17,15 +23,14 @@ const Category = (): ReactElement => {
         name="category"
         render={({ field }) => (
           <Combobox
-            items={STACK}
-            onValueChange={field.onChange}
-            value={field.value}
+            items={categoryLabels}
+            onValueChange={(label) => field.onChange(label ? czToKey[label as ECategory] : null)}
+            value={field.value ? ECategory[field.value as keyof typeof ECategory] : null}
           >
             <ComboboxInput
               placeholder="Vyberte kategorii sázky..."
               showClear
             />
-
             <ComboboxContent>
               <ComboboxEmpty>Žádná kategorie nenalezena.</ComboboxEmpty>
 

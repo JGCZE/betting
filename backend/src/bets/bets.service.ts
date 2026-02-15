@@ -16,7 +16,10 @@ export class BetsService {
   async getNewestBets(page: string, limit: string) {
     const pageNumber = parseInt(page) || 1;
     const limitNumber = parseInt(limit) || 32;
-  
+
+    const test = await this.betsRepository.findNewest(pageNumber, limitNumber)
+    console.log("test", test[0])
+
     return this.betsRepository.findNewest(pageNumber, limitNumber);
   }
 

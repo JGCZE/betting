@@ -1,4 +1,5 @@
 import { ApiProperty, OmitType } from "@nestjs/swagger";
+import { ECategory } from "../schemas/newBetSchema";
 
 export class CreateBetDto {
   @ApiProperty()
@@ -23,7 +24,7 @@ export class CreateBetDto {
   betUrl: string;
 
   @ApiProperty()
-  category?: string;
+  category: ECategory;
 
   @ApiProperty()
   stake: string;
@@ -47,6 +48,9 @@ export class GetBetsHomePageDto {
 
   @ApiProperty()
   rivalName: string;
+
+  @ApiProperty()
+  category: ECategory;
 
   @ApiProperty()
   stake: string;

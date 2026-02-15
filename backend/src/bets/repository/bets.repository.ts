@@ -13,10 +13,10 @@ export class BetsRepository {
 
     return this.betModel
       .find()
-      .sort({ createdAt: -1 , _id: -1})
+      .sort({ createdAt: -1, _id: -1 })
       .skip(skip)
       .limit(limit)
-      .select('_id betTitle challengerName rivalName stake deadline betUrl')
+      .select('_id betTitle challengerName rivalName stake deadline betUrl category')
       .exec();
   }
 };
