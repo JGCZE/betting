@@ -16,11 +16,11 @@ interface IReturn {
   isLoading: boolean;
 }
 
-const useAllBetsApi = (): IReturn => {
+const useAllBetsApi = (category?: string): IReturn => {
   const fetchProjects = async ({ pageParam }: { pageParam: number }) => {
     try {
       const res = await httpGetRequest<Array<TAllBets>>(
-        `${API_ENDPOINTS.GET_NEWEST_BETS}?page=${pageParam}&limit=${LIMIT}`
+        `${API_ENDPOINTS.GET_NEWEST_BETS}?page=${pageParam}&limit=${LIMIT}&cat=${category}`
       );
 
       if (!res || !res.length) {
@@ -51,7 +51,7 @@ const useAllBetsApi = (): IReturn => {
     },
     initialPageParam: 1,
     queryFn: fetchProjects,
-    queryKey: ["fetchAllBetsInfinite"],
+    queryKey: ["fetchAllBetsInfinite", category],
   });
 
   const dataFormatted = data?.pages

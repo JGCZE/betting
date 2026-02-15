@@ -1,12 +1,15 @@
 import { Link } from "@tanstack/react-router"
 import InfiniteScroll from "react-infinite-scroll-component";
 import BetCardSkeleton from "@/components/ui/betCardSkeleton";
+import { Route } from "@/routes/index";
 import useAllBetsApi from "../api/useAllBetsApi";
 import BetCard from "./BetCard/BetCard";
 
 
 const AllBets = () => {
-  const { data, error, fetchNextPage, hasNextPage, isLoading } = useAllBetsApi();
+  const { cat: category } = Route.useSearch();
+
+  const { data, error, fetchNextPage, hasNextPage, isLoading } = useAllBetsApi(category);
 
   if (error) {
     return (
