@@ -24,7 +24,7 @@ const Navbar = () => {
   return (
     <div className='page-layout flex gap-6 items-center h-10 bg-navy-600 border-b-2 sticky top-0'>
       <div className="gap-6 flex justify-center items-center">
-        <Link className="navLink" to="/">
+        <Link className="navLink" search={{ cat: undefined }} to="/">
           Home
         </Link>
 
