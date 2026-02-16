@@ -3,13 +3,15 @@ import { BsPersonCheckFill } from "react-icons/bs";
 import useAuth from "@/context/AuthContext";
 import Register from "@/pages/register/RegisterPage";
 import { Input } from "../ui/input";
-import LogOut from "./components/LogOut";
+import { LogOut } from "./components";
 
 
 const Header = () => {
   const { userName } = useAuth()
 
   const loggedInUser = userName?.userName
+
+  console.log("SSS", userName)
 
   return (
     <div className="page-layout flex justify-between items-center h-14 bg-navy-600 border-b-2">

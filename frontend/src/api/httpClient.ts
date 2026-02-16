@@ -22,19 +22,19 @@ export const httpGetRequest = async<T>(
 
 export const httpPostRequest = async <T>(
   endpoint: string,
-  data: unknown,
+  data?: unknown,
 ): Promise<T | undefined> => {
+  const hasBody = data !== null && data !== undefined;
+
   const response = await fetch(`${BASE_URL}${endpoint}`, {
-    body: JSON.stringify(data),
+    body: hasBody ? JSON.stringify(data) : undefined,
     credentials: 'include',
-    headers: {
-      "Content-type": "application/json; charset=UTF-8"
-    },
+    headers: hasBody ? { "Content-Type": "application/json; charset=UTF-8" } : {},
     method: "POST",
   })
 
   if (!response.ok) {
-    throw new Error(`Login failed with status: ${response.status}`);
+    throw new Error(`Request failed with status: ${response.status}`);
   }
 
   return response.json() as Promise<T>;

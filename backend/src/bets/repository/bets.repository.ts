@@ -30,7 +30,6 @@ export class BetsRepository {
       .select('_id betTitle challengerName rivalName stake deadline betUrl category')
       .exec();
 
-    console.log("RES", data)
     return data
   }
 };

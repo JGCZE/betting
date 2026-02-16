@@ -37,21 +37,21 @@ const Navbar = () => {
         </Link>
 
         {!!userName && <Link className="navLink" to="/badges">
-          Odznaky a statistiky
+          Moje sázky
         </Link>}
       </div>
 
       <div className='border h-6' />
 
       <div className='flex overflow-x-auto scrollbar-thin gap-0 '>
-         <Button
-            className='text-sm text-navy-400 bg-transparent cursor-pointer no-underline! hover:text-sky-400'
-            key="all"
-            onClick={() => handleFilterClick(undefined)}
-            variant="link"
-          >
-            Vše
-          </Button>
+        <Button
+          className='text-sm text-navy-400 bg-transparent cursor-pointer no-underline! hover:text-sky-400'
+          key="all"
+          onClick={() => handleFilterClick(undefined)}
+          variant="link"
+        >
+          Vše
+        </Button>
 
         {STACK.map(({ label, value }) => (
           <Button

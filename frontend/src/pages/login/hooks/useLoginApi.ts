@@ -1,5 +1,6 @@
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { httpPostRequest } from "@/api/httpClient";
+import useNavigateHome from "@/hooks/useNavigateHome";
 
 type LoginData = {
   password: string;
@@ -9,6 +10,9 @@ type LoginData = {
 const endpoint = '/auth/login';
 
 const useLoginApi = () => {
+  const queryClient = useQueryClient();
+  const navigateHome = useNavigateHome();
+
   const mutation = useMutation({
     mutationFn: (data: LoginData) => httpPostRequest<LoginData>(endpoint, data),
     onError: (error) => {
@@ -16,7 +20,8 @@ const useLoginApi = () => {
     },
     onSuccess: (data) => {
       console.log("Login success:", data);
-      // Navigate or set user context here
+      queryClient.invalidateQueries({ queryKey: ["authentiaction"] });
+      navigateHome();
     },
   })
 
