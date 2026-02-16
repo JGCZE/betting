@@ -25,7 +25,7 @@ const useAllBetsApi = (category?: string): IReturn => {
         `${API_ENDPOINTS.GET_NEWEST_BETS}?page=${pageParam}&limit=${LIMIT}${catParam}`
       );
 
-      if (!res || !res.length) {
+      if (!res) {
         throw new Error("No bets found");
       }
 

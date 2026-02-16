@@ -10,7 +10,9 @@ const isEnum = (parseCat?: string): parseCat is ECategory => {
 
 @Injectable()
 export class BetsRepository {
-  constructor(@InjectModel(Bets.name) private betModel: Model<BetDocument>) { }
+  constructor(
+    @InjectModel(Bets.name) private betModel: Model<BetDocument>
+  ) { }
 
   async findNewest(pageNumber: number, limit: number, cat?: string) {
     const page = Math.max(1, pageNumber);
@@ -28,6 +30,7 @@ export class BetsRepository {
       .select('_id betTitle challengerName rivalName stake deadline betUrl category')
       .exec();
 
+    console.log("RES", data)
     return data
   }
 };

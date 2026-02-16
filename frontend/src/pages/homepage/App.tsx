@@ -17,8 +17,6 @@ const App = (): ReactElement => {
         </div>
       </div> */}
 
-      <h2 className="font-bold text-2xl mt-6">Areny</h2>
-
       <AllBets />
     </div>
   )
