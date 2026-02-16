@@ -1,5 +1,5 @@
 import { ApiProperty, OmitType } from "@nestjs/swagger";
-import { ECategory } from "../schemas/newBetSchema";
+import { ECategory } from "src/types";
 
 export class CreateBetDto {
   @ApiProperty()

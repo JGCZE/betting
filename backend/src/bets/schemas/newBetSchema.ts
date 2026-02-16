@@ -1,21 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
+import { ECategory } from 'src/types';
 
 export type BetDocument = HydratedDocument<Bets>;
-
-export enum ECategory {
-  ALCOHOL = "Alkohol",
-  MONEY = "Peníze",
-  CHALLENGE = "Úkol/ výzva",
-  FOOD = "Jídlo",
-  SERVCIE = "Služba",
-  HUMILIATION = "Veřejné ponížení",
-  GIFT = "Dárek",
-  ITEMS = "Zboží",
-  OTHERS = "Ostatní",
-  HONOR = "Čest",
-  IWILLDO = "Udělám místo tebe..."
-}
 
 @Schema({ timestamps: true })
 export class Bets {

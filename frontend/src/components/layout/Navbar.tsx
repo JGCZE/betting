@@ -14,15 +14,15 @@ const Navbar = () => {
     }
   })
 
-  const handleFilterClick = (category: string) => {
+  const handleFilterClick = (category?: string) => {
     navigate({
-      search: { cat: category.toLowerCase() },
+      search: { cat: category?.toLowerCase() },
       to: '/',
     });
   };
 
   return (
-    <div className='page-layout flex gap-6 items-center h-10 bg-navy-600 border-b-2 sticky top-0'>
+    <div className='page-layout flex gap-6 items-center h-12 bg-navy-600 border-b-2 sticky top-0'>
       <div className="gap-6 flex justify-center items-center">
         <Link className="navLink" search={{ cat: undefined }} to="/">
           Home
@@ -43,10 +43,19 @@ const Navbar = () => {
 
       <div className='border h-6' />
 
-      <div className='flex overflow-x-auto hide-scrollbar gap-0'>
+      <div className='flex overflow-x-auto scrollbar-thin gap-0 '>
+         <Button
+            className='text-sm text-navy-400 bg-transparent cursor-pointer no-underline! hover:text-sky-400'
+            key="all"
+            onClick={() => handleFilterClick(undefined)}
+            variant="link"
+          >
+            Vše
+          </Button>
+
         {STACK.map(({ label, value }) => (
           <Button
-            className='text-sm text-navy-400 bg-transparent cursor-pointer'
+            className='text-sm text-navy-400 bg-transparent cursor-pointer no-underline! hover:text-sky-400'
             key={label}
             onClick={() => handleFilterClick(value)}
             variant="link"

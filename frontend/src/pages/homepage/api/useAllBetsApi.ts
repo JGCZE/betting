@@ -18,9 +18,11 @@ interface IReturn {
 
 const useAllBetsApi = (category?: string): IReturn => {
   const fetchProjects = async ({ pageParam }: { pageParam: number }) => {
+    const catParam = category ? `&cat=${category}` : '';
+
     try {
       const res = await httpGetRequest<Array<TAllBets>>(
-        `${API_ENDPOINTS.GET_NEWEST_BETS}?page=${pageParam}&limit=${LIMIT}&cat=${category}`
+        `${API_ENDPOINTS.GET_NEWEST_BETS}?page=${pageParam}&limit=${LIMIT}${catParam}`
       );
 
       if (!res || !res.length) {
